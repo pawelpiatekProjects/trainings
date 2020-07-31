@@ -5,6 +5,11 @@ import * as variables from '../../assets/variables';
 
 const NavWrapper = styled.nav`
   padding: 3.5rem;
+  height: 7rem;
+  background: transparent;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 `;
 
 const NavContent = styled.ul`
@@ -30,7 +35,7 @@ const Logo = styled.div`
 
 const SideButtons = styled.div`
   a{
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     color: ${variables.textColorPrimary};
     text-decoration: none;
     
