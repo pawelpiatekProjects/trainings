@@ -21,8 +21,6 @@ const NavContent = styled.ul`
 const NavItem = styled.li`
   display: inline-block;
   
-  
-  
 `;
 
 const Logo = styled.div`
@@ -39,6 +37,9 @@ const SideButtons = styled.div`
     color: ${variables.textColorPrimary};
     text-decoration: none;
     
+    &:hover{
+    color: ${variables.light};
+    }
   }
   
  
@@ -46,6 +47,7 @@ const SideButtons = styled.div`
 
 const Separator = styled.span`
   margin: 0 1rem;
+  color: ${variables.light};
 `;
 
 
