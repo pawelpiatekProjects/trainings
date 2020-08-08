@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import * as variables from '../assets/variables';
-
 import Navigation from "../components/navigation/navigation";
-import ContentLeft from "../components/home/contentLeft";
-import ContentRight from "../components/home/contentRight";
+import * as variables from "../assets/variables";
+import ContentLeft from '../components/signInUp/contentLeft';
+import ContentRight from '../components/signInUp/contentRight';
 
-const HomeWrapper = styled.div`
+const SignInWrapper = styled.div`
   height: 100vh;
   position: relative;
 `;
@@ -18,20 +17,20 @@ const Content = styled.div`
 `;
 
 const ContentLeftWrapper = styled.div`
-  width: 60%;
-  
+  width: 40%;
+  background: ${variables.yellowPrimary};
   height: 100%;
 `;
 
 const ContentRightWrapper = styled.div`
-  width: 40%;
-  background: ${variables.yellowPrimary};
+  width: 60%;
+  
 `;
 
-const Home = () => {
-    return(
-        <HomeWrapper>
-            <Navigation isHome={true}/>
+const SignIn = () => {
+    return (
+        <SignInWrapper>
+            <Navigation isHome={false}/>
             <Content>
                 <ContentLeftWrapper>
                     <ContentLeft/>
@@ -40,8 +39,8 @@ const Home = () => {
                     <ContentRight/>
                 </ContentRightWrapper>
             </Content>
-        </HomeWrapper>
+        </SignInWrapper>
     )
-}
+};
 
-export default Home;
+export default SignIn;

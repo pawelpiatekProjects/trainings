@@ -23,6 +23,8 @@ const NavItem = styled.li`
   
 `;
 
+
+
 const Logo = styled.div`
     a{
         text-decoration: none;
@@ -32,6 +34,7 @@ const Logo = styled.div`
 `;
 
 const SideButtons = styled.div`
+  display: ${props => props.displayed ? 'inline-block' : 'none'};
   a{
     font-size: 1.4rem;
     color: ${variables.textColorPrimary};
@@ -52,7 +55,7 @@ const Separator = styled.span`
 
 
 
-const Navigation = () => {
+const Navigation = ({isHome}) => {
     return (
         <NavWrapper>
             <NavContent>
@@ -63,8 +66,8 @@ const Navigation = () => {
                 </NavItem>
 
                 <NavItem>
-                    <SideButtons>
-                        <NavLink to="#">Sign In</NavLink>
+                    <SideButtons displayed={isHome}>
+                        <NavLink to="/sign-in">Sign In</NavLink>
                         <Separator>/</Separator>
                         <NavLink to="#">Sign Up</NavLink>
                     </SideButtons>
