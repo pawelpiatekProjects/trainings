@@ -4,8 +4,9 @@ import Navigation from "../components/navigation/navigation";
 import * as variables from "../assets/variables";
 import ContentLeft from '../components/signInUp/contentLeft';
 import ContentRightSignIn from '../components/signInUp/contentRightSignIn';
+import ContentRightSignUp from "../components/signInUp/contentRightSignUp";
 
-const SignInWrapper = styled.div`
+const SignUpWrapper = styled.div`
   height: 100vh;
   position: relative;
 `;
@@ -29,20 +30,20 @@ const ContentRightWrapper = styled.div`
   
 `;
 
-const SignIn = () => {
+const SignUp = () => {
     return (
-        <SignInWrapper>
+        <SignUpWrapper>
             <Navigation isHome={false}/>
             <Content>
                 <ContentLeftWrapper>
                     <ContentLeft/>
                 </ContentLeftWrapper>
                 <ContentRightWrapper>
-                    <ContentRightSignIn/>
+                    <ContentRightSignUp/>
                 </ContentRightWrapper>
             </Content>
-        </SignInWrapper>
+        </SignUpWrapper>
     )
 };
 
-export default SignIn;
+export default SignUp;

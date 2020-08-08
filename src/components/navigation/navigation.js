@@ -64,12 +64,11 @@ const Navigation = ({isHome}) => {
                         <NavLink to="/">Logo</NavLink>
                     </Logo>
                 </NavItem>
-
                 <NavItem>
                     <SideButtons displayed={isHome}>
                         <NavLink to="/sign-in">Sign In</NavLink>
                         <Separator>/</Separator>
-                        <NavLink to="#">Sign Up</NavLink>
+                        <NavLink to="/sign-up">Sign Up</NavLink>
                     </SideButtons>
                 </NavItem>
             </NavContent>

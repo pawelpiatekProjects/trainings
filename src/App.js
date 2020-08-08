@@ -6,6 +6,7 @@ import GoogleFontLoader from "react-google-font-loader";
 
 import Home from "./pages/home";
 import SignIn from "./pages/signIn";
+import SignUp from "./pages/signUp";
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
             <GlobalStyle/>
             <Switch>
                 <Route path="/sign-in" component={SignIn}/>
+                <Route path="/sign-up" component={SignUp}/>
                 <Route path="/" component={Home}/>
             </Switch>
         </div>

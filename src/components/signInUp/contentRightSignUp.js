@@ -1,13 +1,14 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import * as variables from '../../assets/variables';
-import {Formik, Field, Form} from "formik";
-import * as Yup from 'yup';
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faUser, faLock} from "@fortawesome/free-solid-svg-icons";
-import YellowBorderButton from "../UIComponents/yellowBorderButton";
+import * as variables from "../../assets/variables";
 import {yellowPrimary} from "../../assets/variables";
+import * as Yup from "yup";
+import {Field, Form, Formik} from "formik";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faLock, faUser, faEnvelope, faKey, faUserAlt} from "@fortawesome/free-solid-svg-icons";
+import YellowBorderButton from "../UIComponents/yellowBorderButton";
 
+// todo: consider exporting ContentRighWrapper
 const ContentRightWrapper = styled.div`
   padding: 5rem;
   width: 80%;
@@ -17,29 +18,29 @@ const ContentRightWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   
-  &::before {
-    position: absolute;
-    content: '';
-    display: inline-block;
-    top: -1rem;
-    left: -1rem;
-    width: 15rem;
-    height: 15rem;
-    border-left: 6px solid ${variables.yellowPrimary};
-    border-top: 6px solid ${variables.yellowPrimary};
-  }
-  
-  &::after {
-  position: absolute;
-    content: '';
-    display: inline-block;
-    bottom: -3rem;
-    right: 1rem;
-    width: 15rem;
-    height: 15rem;
-    border-right: 6px solid ${variables.yellowPrimary};
-    border-bottom: 6px solid ${variables.yellowPrimary};
-  }
+  // &::before {
+  //   position: absolute;
+  //   content: '';
+  //   display: inline-block;
+  //   top: -1rem;
+  //   left: -1rem;
+  //   width: 15rem;
+  //   height: 15rem;
+  //   border-left: 6px solid ${variables.yellowPrimary};
+  //   border-top: 6px solid ${variables.yellowPrimary};
+  // }
+  //
+  // &::after {
+  // position: absolute;
+  //   content: '';
+  //   display: inline-block;
+  //   bottom: -3rem;
+  //   right: 1rem;
+  //   width: 15rem;
+  //   height: 15rem;
+  //   border-right: 6px solid ${variables.yellowPrimary};
+  //   border-bottom: 6px solid ${variables.yellowPrimary};
+  // }
 `;
 
 const Header = styled.h1`
@@ -122,6 +123,10 @@ display: inline-block;
 `;
 
 const SignInSchema = Yup.object().shape({
+    name: Yup.string()
+        .required('Name is required'),
+    lastName: Yup .string()
+        .required('Last name is required'),
     email: Yup.string()
         .min(2, 'Too Short')
         .max(50, 'Too Long')
@@ -131,17 +136,25 @@ const SignInSchema = Yup.object().shape({
         .min(8, 'Too Short')
         .max(20, 'Too Long')
         .required('Password is required'),
+    confirmPassword: Yup.string()
+        .min(8, 'Too Short')
+        .max(20, 'Too Long')
+        .oneOf([Yup.ref('password')], 'Passwords must match')
+        .required('Password is required'),
+
 });
 
-const ContentRight = () => {
-
+const ContentRightSignUp = () => {
     return (
         <ContentRightWrapper>
-            <Header>Sign In</Header>
+            <Header>Sign Up</Header>
             <Formik
                 initialValues={{
+                    name: '',
+                    lastName: '',
                     email: '',
-                    password: ''
+                    password: '',
+                    confirmPassword: ''
                 }}
                 validationSchema={SignInSchema}
                 onSubmit={(values) => {
@@ -149,28 +162,49 @@ const ContentRight = () => {
                 }}>
                 {({errors, touched, isValid}) => (
                     <Form>
+                        <FieldWrapper error={errors.name} touched={touched.name}>
+                            <FontAwesomeIcon icon={faUserAlt}/>
+                            <Field name='name' placeholder='Name'/>
+                        </FieldWrapper>
+                        {errors.name && touched.name ? (
+                            <Error>{errors.name}</Error>
+                        ) : <Error></Error>}
+
+                        <FieldWrapper error={errors.lastName} touched={touched.lastName}>
+                            <FontAwesomeIcon icon={faUser}/>
+                            <Field name='lastName' placeholder='Last Name'/>
+                        </FieldWrapper>
+                        {errors.lastName && touched.lastName ? (
+                            <Error>{errors.lastName}</Error>
+                        ) : <Error></Error>}
 
                         <FieldWrapper error={errors.email} touched={touched.email}>
-                            <FontAwesomeIcon icon={faUser}/>
+                            <FontAwesomeIcon icon={faEnvelope}/>
                             <Field name='email' placeholder='Email'/>
                         </FieldWrapper>
                         {errors.email && touched.email ? (
                             <Error>{errors.email}</Error>
                         ) : <Error></Error>}
+
                         <FieldWrapper error={errors.password} touched={touched.password}>
-                            <FontAwesomeIcon icon={faLock}/>
+                            <FontAwesomeIcon icon={faKey}/>
                             <Field name='password' placeholder='Password' type='password'/>
                         </FieldWrapper>
                         {errors.password && touched.password ? (
                             <Error>{errors.password}</Error>
                         ) : <Error></Error>}
 
-                        <ButtonsRow>
-                            <button>Forgot password?</button>
-                            <button>Sign Up</button>
-                        </ButtonsRow>
+                        <FieldWrapper error={errors.confirmPassword} touched={touched.confirmPassword}>
+                            <FontAwesomeIcon icon={faLock}/>
+                            <Field name='confirmPassword' placeholder='Confirm Password' type='password'/>
+                        </FieldWrapper>
+                        {errors.confirmPassword && touched.confirmPassword ? (
+                            <Error>{errors.confirmPassword}</Error>
+                        ) : <Error></Error>}
+
                         <SubmitButtonWrapper>
-                            <YellowBorderButton text='Submit' type='submit' disabled={isValid}/>
+                            {/*todo: add disabling button*/}
+                            <YellowBorderButton text='Sign Up' type='submit' disabled={false}/>
                         </SubmitButtonWrapper>
 
                     </Form>
@@ -180,4 +214,4 @@ const ContentRight = () => {
     )
 };
 
-export default ContentRight;
+export default ContentRightSignUp;
