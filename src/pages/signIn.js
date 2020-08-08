@@ -20,9 +20,11 @@ const ContentLeftWrapper = styled.div`
   width: 40%;
   background: ${variables.yellowPrimary};
   height: 100%;
+  position: relative;
 `;
 
 const ContentRightWrapper = styled.div`
+  position: relative;
   width: 60%;
   
 `;
