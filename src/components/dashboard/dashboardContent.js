@@ -16,17 +16,19 @@ const DashboardContentWrapper = styled.div`
 
 const NavigationWrapper = styled.div`
   height: 10%;
+  margin-bottom: 5rem;
 `;
 
 const Content = styled.div`
   width: 85%;
   margin: 0 auto;
-  height: 80%;
+  height: 65%;
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(4, 1fr);
-
+  grid-template-rows: 45% 25% 30%;
 `;
+
 
 const ChartLeftWrapper = styled.div`
   grid-column: 1/ span 2;
