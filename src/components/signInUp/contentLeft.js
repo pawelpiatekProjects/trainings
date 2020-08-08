@@ -13,10 +13,10 @@ const HeroImgWrapper = styled.div`
   position: relative;
   
   svg{
-    height: 75vh;
+    height: 65vh;
     width: 100%;
     position: absolute;
-    bottom:5rem;
+    bottom: 10rem;
     left: 50%;
     transform: translateX(-50%);
   }

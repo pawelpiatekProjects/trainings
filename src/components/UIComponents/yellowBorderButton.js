@@ -16,7 +16,7 @@ const Button = styled.button`
     left: 0;
     display: block;
     content: '';
-    border: 3px solid ${variables.yellowPrimary};
+    border: ${props => !props.disabled ? `3px solid ${variables.yellowPrimary}` : 'none'};
     width: 100%;
     height: 100%;
     transition: all .3s;
@@ -26,11 +26,15 @@ const Button = styled.button`
       transform: translate(15px, 2px);
     
   }
+  
+  &:focus{
+  outline: none;
+  }
 `;
 
-const YellowBorderButton = ({text}) => {
+const YellowBorderButton = ({text, type, disabled}) => {
     return (
-        <Button>{text}</Button>
+        <Button type={type} disabled={disabled}>{text}</Button>
     )
 }
 
