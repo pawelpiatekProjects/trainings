@@ -41,7 +41,7 @@ const ContentRight = () => {
 
         const tl = gsap.timeline({defaults: {ease: 'power3.inOut'}});
 
-        tl.fromTo(body, {x: '-=300'}, {duration: 1, x: '+=300', autoAlpha: 1})
+        tl.fromTo(body, {x: '-=80'}, {duration: 1, x: '+=80', autoAlpha: 1})
             .fromTo(lines, {scaleY: .85}, {ease:'power3.inOut', duration: .4, autoAlpha: 1, scaleY: 1})
 
     })

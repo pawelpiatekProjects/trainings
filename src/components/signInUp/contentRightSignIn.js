@@ -7,6 +7,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUser, faLock} from "@fortawesome/free-solid-svg-icons";
 import YellowBorderButton from "../UIComponents/yellowBorderButton";
 import {yellowPrimary} from "../../assets/variables";
+import {Link, useHistory} from "react-router-dom";
 
 const ContentRightWrapper = styled.div`
   padding: 5rem;
@@ -95,7 +96,10 @@ margin: 2rem auto 3rem auto;
 display: flex;
 justify-content: space-between;
 
-  button {
+  a {
+  color: ${variables.textColorPrimary};
+  text-decoration: none;
+  font-size: 1.4rem;
   background: transparent;
   border: 1px solid transparent;
   margin: 0 4rem;
@@ -133,7 +137,9 @@ const SignInSchema = Yup.object().shape({
         .required('Password is required'),
 });
 
-const ContentRightSignIn = () => {
+const ContentRightSignIn = (props) => {
+
+    const history = useHistory();
 
     return (
         <ContentRightWrapper>
@@ -145,9 +151,11 @@ const ContentRightSignIn = () => {
                 }}
                 validationSchema={SignInSchema}
                 onSubmit={(values) => {
+                    // todo: add external method
+                    history.push('/dashboard');
                     console.log(values)
                 }}>
-                {({errors, touched, isValid}) => (
+                {({errors, touched, }) => (
                     <Form>
 
                         <FieldWrapper error={errors.email} touched={touched.email}>
@@ -166,12 +174,12 @@ const ContentRightSignIn = () => {
                         ) : <Error></Error>}
 
                         <ButtonsRow>
-                            <button>Forgot password?</button>
-                            <button>Sign Up</button>
+                            <Link to='#'>Forgot password?</Link>
+                            <Link to='/sign-up'>Sign Up</Link>
                         </ButtonsRow>
                         <SubmitButtonWrapper>
                             {/*todo: add disabling button*/}
-                            <YellowBorderButton text='Sign In' type='submit' disabled={false}/>
+                            <YellowBorderButton text='Sign In' type='submit' />
                         </SubmitButtonWrapper>
 
                     </Form>

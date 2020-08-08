@@ -43,8 +43,8 @@ const ContentLeft = () => {
         //
         const tl = gsap.timeline({defaults: {ease: 'power3.inOut'}});
         //
-        tl.fromTo(body, {x: '-=300'}, {duration: 1, x: '+=300', autoAlpha: 1})
-            .fromTo(bar, {x: '-=300'}, {ease:'power3.inOut',  duration: 1, x: '+=300', autoAlpha: 1, scaleY: 1}, '-=1')
+        tl.fromTo(body,{},  {duration: 1.5,  autoAlpha: 1})
+            .fromTo(bar , {},{ease:'power3.inOut',  duration: 1.5,  autoAlpha: 1, scaleY: 1}, '-=1.5')
             .fromTo(barLines, {scaleY: .85}, {ease:'power3.inOut', duration: .4, autoAlpha: 1, scaleY: 1})
             .fromTo(circleFront, {scaleY: .85}, {ease:'power3.inOut', duration: .4, autoAlpha: 1, scaleY: 1}, '-=.4')
 
