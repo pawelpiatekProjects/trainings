@@ -7,6 +7,8 @@ const LastTrainingWrapper = styled.div`
   background: ${variables.light};
 `;
 
+
+
 const LastTraining = () => {
     return (
         <LastTrainingWrapper>
