@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import * as variables from '../../../assets/variables';
 
 const ChartRightWrapper = styled.div`
-  height: 100%;
-  background: ${variables.light};
+  //height: 100%;
+  background: ${variables.yellowPrimary};
 `;
 
 const ChartRight = () => {

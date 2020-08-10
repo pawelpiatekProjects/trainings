@@ -22,16 +22,17 @@ const NavigationWrapper = styled.div`
 const Content = styled.div`
   width: 85%;
   margin: 0 auto;
-  height: 65%;
+  //height: 65%;
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: 45% 25% 30%;
+  grid-template-rows: repeat(3, max-content);
 `;
 
 
 const ChartLeftWrapper = styled.div`
   grid-column: 1/ span 2;
+  
 `;
 
 const ChartRightWrapper = styled.div`
