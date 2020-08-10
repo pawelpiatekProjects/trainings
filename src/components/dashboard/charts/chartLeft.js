@@ -7,7 +7,7 @@ import {
 
 const ChartLeftWrapper = styled.div`
   //height: 100%;
-  height: 250px;
+  height: 25rem;
   background: ${variables.light};
   border: 2px solid ${variables.yellowPrimary};
   
