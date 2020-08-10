@@ -4,6 +4,7 @@ import * as variables from '../../assets/variables';
 import {yellowPrimary} from "../../assets/variables";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCalendarAlt, faDumbbell} from "@fortawesome/free-solid-svg-icons";
+import {Header} from "../UIComponents/YellowBorderHeader";
 
 const RecordsWrapper = styled.div`
   height: 100%;
@@ -14,32 +15,26 @@ const RecordsWrapper = styled.div`
   width: 100%;
 `;
 
-const Header = styled.div`
-  width: 30%;
-    h1{
-      width: min-content;
-      margin: 0;
-      height: min-content;
-      font-weight: 400;
-      font-size: 1.8rem;
-      border: 3px solid ${variables.yellowPrimary};
-      padding: .5rem 2rem .5rem .5rem;
-      
-    }
-  
+const HeaderWrapper = styled.div`
+  width: 20%;
+
+  h1{
+  width: min-content;
+  }
+
 `;
 
 const Exercises = styled.div`
   display: flex;
   justify-content: space-around;
-  width: 70%;
+  width: 80%;
 `;
 
 const Exercise = styled.div`
   //margin-right: 10rem;
   h3{
   font-weight: 700;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   text-align: left;
   border-bottom: 2px solid ${yellowPrimary};
   padding: .5rem 2rem .5rem 0;
@@ -48,7 +43,7 @@ const Exercise = styled.div`
    
   
   p{
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: ${variables.textColorPrimary};
   text-align: left;
   
@@ -69,9 +64,9 @@ const Exercise = styled.div`
 const RecordsList = () => {
     return (
         <RecordsWrapper>
-            <Header>
-                <h1>Records</h1>
-            </Header>
+            <HeaderWrapper>
+                <Header>Records</Header>
+            </HeaderWrapper>
             <Exercises>
                 <Exercise>
                     <h3>Bench Press</h3>
