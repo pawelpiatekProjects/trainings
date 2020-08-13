@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import TopNav from "../navigation/topNav";
 import * as variables from '../../assets/variables';
+import SideNavigation from "../navigation/sideNavigation";
 
 const TrainingsWrapper = styled.div`
     background: ${variables.grayPrimary};
@@ -31,11 +32,20 @@ const FlexboxContainer = styled.div`
 const SideBar = styled.div`
   width: 7%;
   background: ${variables.yellowPrimary};
+  position: relative;
+`;
+
+const SideNavigationWrapper = styled.div`
+  width: 100%;
+   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
 `;
 
 const Content = styled.div`
   width: 93%;
-  margin-top: 7rem;
+  margin-top: 10rem;
 `;
 
 
@@ -48,7 +58,9 @@ const TrainingsContent = () => {
             </NavigationWrapper>
             <FlexboxContainer>
                 <SideBar>
-
+                    <SideNavigationWrapper>
+                        <SideNavigation/>
+                    </SideNavigationWrapper>
                 </SideBar>
                 <Content>
 

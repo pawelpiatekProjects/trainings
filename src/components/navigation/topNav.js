@@ -40,12 +40,47 @@ const NavButtons = styled.li`
     font-size: 2rem;
     text-decoration: none;
     color: ${variables.textColorPrimary};
+    position: relative;
     
     &.active {
-      color: ${variables.yellowPrimary};
-      border-bottom: 2px solid ${variables.yellowPrimary};
-      padding-bottom: .5rem;
+        &::after {
+        position: absolute;
+        content: '';
+        display: inline-block;
+        bottom: -1rem;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: ${variables.yellowPrimary};
+      }
     }
+    
+    &::after {
+        position: absolute;
+        content: '';
+        display: inline-block;
+        bottom: -1rem;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: ${variables.yellowPrimary};
+        transition: all .3s;
+      }
+    
+    &:hover{
+      &::after {
+        position: absolute;
+        content: '';
+        display: inline-block;
+        bottom: -1rem;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: ${variables.yellowPrimary};
+      }
+    }
+    
+    
   }
 `;
 
