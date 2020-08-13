@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import * as variables from '../../assets/variables';
-import DashboardTopNav from "./dashboardTopNav";
+import TopNav from "../navigation/topNav";
 import ChartLeft from "./charts/chartLeft";
 import ChartRight from "./charts/chartRight";
 import RecordsList from "./recordsList";
@@ -22,48 +22,49 @@ const NavigationWrapper = styled.div`
 const Content = styled.div`
   width: 85%;
   margin: 0 auto;
-  //height: 65%;
+  height: 80%;
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(3, max-content);
+  grid-template-rows: repeat(3, min-content);
 `;
 
 
 const ChartLeftWrapper = styled.div`
   grid-column: 1/ span 2;
-  
+  box-shadow: ${variables.dashboardItemBoxShadow};
 `;
 
 const ChartRightWrapper = styled.div`
   grid-column: 3/ span 2;
+  box-shadow: ${variables.dashboardItemBoxShadow};
 `;
 
 const RecordsWrapper = styled.div`
   grid-column: 1/-1;
-
+  box-shadow: ${variables.dashboardItemBoxShadow};
 `;
 
 const RecentActivitiesWrapper = styled.div`
   grid-column: 1/ span 1;
-  
+  box-shadow: ${variables.dashboardItemBoxShadow};
 `;
 
 const GymsNearbyWrapper = styled.div`
   grid-column: 2/ span 2;
- 
+  box-shadow: ${variables.dashboardItemBoxShadow};
 `;
 
 const LastTrainingWrapper = styled.div`
   grid-column: 4/ span 1;
- 
+  box-shadow: ${variables.dashboardItemBoxShadow};
 `;
 
 const DashboardContent = () => {
     return (
         <DashboardContentWrapper>
             <NavigationWrapper>
-                <DashboardTopNav/>
+                <TopNav displayLogo={true}/>
             </NavigationWrapper>
             <Content>
                 <ChartLeftWrapper>

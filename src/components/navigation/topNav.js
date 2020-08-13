@@ -15,11 +15,14 @@ const Navigation = styled.ul`
   grid-template-columns: 30% 50% 20%;
   list-style: none;
   align-items: center;
+  height: 100%;
+  z-index: ${variables.navigationZIndex};
 `;
 
 
 
 const Logo = styled.li`
+  display: ${props=>props.display ? 'inline-block' : 'none'};
   grid-column: 1/ span 1;
   text-align: left;
   a{
@@ -37,6 +40,12 @@ const NavButtons = styled.li`
     font-size: 2rem;
     text-decoration: none;
     color: ${variables.textColorPrimary};
+    
+    &.active {
+      color: ${variables.yellowPrimary};
+      border-bottom: 2px solid ${variables.yellowPrimary};
+      padding-bottom: .5rem;
+    }
   }
 `;
 
@@ -50,11 +59,11 @@ const UserButton = styled.li`
   }
 `;
 
-const DashboardTopNav = () => {
+const TopNav = ({displayLogo}) => {
     return (
         <DashboardTopNavWrapper>
             <Navigation>
-                    <Logo>
+                    <Logo display={displayLogo}>
                         <NavLink to='/'>Logo</NavLink>
                     </Logo>
                     <NavButtons>
@@ -72,4 +81,5 @@ const DashboardTopNav = () => {
     )
 };
 
-export default DashboardTopNav;
+
+export default TopNav;

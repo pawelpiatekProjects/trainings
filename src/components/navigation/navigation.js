@@ -9,7 +9,7 @@ const NavWrapper = styled.nav`
   background: transparent;
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: ${variables.navigationZIndex};
 `;
 
 const NavContent = styled.ul`
