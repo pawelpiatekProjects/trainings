@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import TopNav from "../navigation/topNav";
 import * as variables from '../../assets/variables';
@@ -23,20 +23,33 @@ const NavigationWrapper = styled.div`
 const FlexboxContainer = styled.div`
   display: flex;
   height: 100%;
-  width: 100%;
+  width: calc(100% - 10rem);
   z-index: 1;
-
+  position: absolute;
+  top: 0;
+  left: 10rem;
   
 `;
 
 const SideBar = styled.div`
-  width: 7%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 10rem;
+  transition: all .3s;
   background: ${variables.yellowPrimary};
   position: relative;
+  z-index: ${variables.navigationZIndex};
+  &:hover {
+  width: 25rem;
+  //cursor: pointer;
+  }
 `;
 
 const SideNavigationWrapper = styled.div`
   width: 100%;
+  //height: 100%;
    position: absolute;
   top: 50%;
   left: 50%;
@@ -44,26 +57,32 @@ const SideNavigationWrapper = styled.div`
 `;
 
 const Content = styled.div`
-  width: 93%;
+  width: 95%;
   margin-top: 10rem;
 `;
 
 
 
 const TrainingsContent = () => {
+    const [isSideNavOpen, setIsSideNavOpen] = useState(false);
+    const handleSideBarEnter = () => {
+        setIsSideNavOpen(true);
+    }
+    const handleSideBarExit = () => {
+        setIsSideNavOpen(false);
+    }
     return (
         <TrainingsWrapper>
             <NavigationWrapper>
                 <TopNav displayLogo={true}/>
             </NavigationWrapper>
+            <SideBar onMouseOver={handleSideBarEnter} onMouseOut={handleSideBarExit}>
+                <SideNavigationWrapper>
+                    <SideNavigation display={isSideNavOpen}/>
+                </SideNavigationWrapper>
+            </SideBar>
             <FlexboxContainer>
-                <SideBar>
-                    <SideNavigationWrapper>
-                        <SideNavigation/>
-                    </SideNavigationWrapper>
-                </SideBar>
                 <Content>
-
                     Trainings
                 </Content>
             </FlexboxContainer>
