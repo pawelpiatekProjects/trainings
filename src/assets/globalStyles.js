@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import * as variables from './variables';
 
 // global style component which contains global styles for this app
 const GlobalStyle = createGlobalStyle`
@@ -8,6 +9,31 @@ const GlobalStyle = createGlobalStyle`
     
 
   }
+  
+  // custom scroll
+    ::-webkit-scrollbar {
+      width: 1.5rem;
+      box-shadow: 0px 0px 13px -7px rgba(0,0,0,0.75);
+    }
+    
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: ${variables.thirdGray}; 
+      border-radius: 1rem;
+    }
+     
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: ${variables.textColorSecondary}; 
+      height: 3rem;
+      border-radius: 1rem;
+      
+      &:hover{
+      background: ${variables.yellowPrimary}; 
+      }
+    }
+    
+  
 
   *,
   *::before,

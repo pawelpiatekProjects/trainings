@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import * as variables from '../../../assets/variables';
 
 const TrainingWrapper = styled.div`
-
+  height: 6rem;
 `;
 
 const Content = styled.div`

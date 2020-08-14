@@ -40,7 +40,10 @@ const Plan = styled.p``;
 const Day = styled.p``;
 
 const TrainingsListContent = styled.div`
-  height: 100%;
+  height: 43rem;
+  overflow-y: scroll;
+  margin-top: 1rem;
+  padding-right: 1rem;
 `;
 
 
