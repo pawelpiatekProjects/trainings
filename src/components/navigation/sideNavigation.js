@@ -55,7 +55,7 @@ const NavItem = styled.li`
    transition: all .3s;
    &:hover {
     background: ${variables.light};
-    
+    L
     cursor: pointer;
     //width: 150%;
     transition: all .3s;
