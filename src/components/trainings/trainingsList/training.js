@@ -7,6 +7,7 @@ const TrainingWrapper = styled.div`
 `;
 
 const Content = styled.div`
+  border-left: 3px solid ${variables.yellowPrimary};
   display: flex;
   width: 100%;
   margin: 1rem auto;
@@ -25,7 +26,7 @@ const Content = styled.div`
   &:hover {
     cursor: pointer;
     background: ${variables.yellowPrimary};
-    
+    border-left: 3px solid ${variables.light};
     p{
       color: ${variables.light};
     }
