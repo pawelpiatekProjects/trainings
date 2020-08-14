@@ -5,6 +5,7 @@ import * as variables from '../../assets/variables';
 import SideNavigation from "../navigation/sideNavigation";
 import LastTraining from "./lastTraining/lastTraining";
 import TrainingsList from "./trainingsList/trainingsList";
+import NewTraining from "./newTraining/newTraining";
 
 const TrainingsWrapper = styled.div`
     background: ${variables.grayPrimary};
@@ -47,9 +48,11 @@ const SideBar = styled.div`
   background: ${variables.yellowPrimary};
   position: relative;
   z-index: ${variables.navigationZIndex};
+  box-shadow: 1px 0px 12px -7px rgba(0,0,0,0.75);
   &:hover {
   width: 25rem;
   //cursor: pointer;
+  //box-shadow: 1px 0px 12px -6px rgba(0,0,0,0.75);
   }
 `;
 
@@ -66,7 +69,7 @@ const SideNavigationWrapper = styled.div`
 
 const LastTrainingWrapper = styled.div`
   // width: 60%;
-   background: ${variables.light};
+  // background: ${variables.light};
   // margin: 12rem 5rem;
   // height: 40%;
   // z-index: 1;
@@ -80,6 +83,18 @@ const TrainingsListWrapper = styled.div`
    grid-column: 2/ -1;
   
 `;
+
+const NewTrainingWrapper = styled.div`
+  grid-column: 1/ span 1;
+  grid-row: 2/ -1;
+`;
+
+//todo: remove
+const lastTraining = {
+    date: '23-03-2020',
+    plan: 'FBW1',
+    day: 'Traning A'
+}
 
 
 //todo: add nested routes
@@ -104,11 +119,14 @@ const TrainingsContent = () => {
                     <TopNav displayLogo={false}/>
                 </NavigationWrapper>
                 <LastTrainingWrapper>
-                    <LastTraining/>
+                    <LastTraining lastTraining={lastTraining}/>
                 </LastTrainingWrapper>
                 <TrainingsListWrapper>
                     <TrainingsList/>
                 </TrainingsListWrapper>
+                <NewTrainingWrapper>
+                    <NewTraining/>
+                </NewTrainingWrapper>
             </Grid>
         </TrainingsWrapper>
     )

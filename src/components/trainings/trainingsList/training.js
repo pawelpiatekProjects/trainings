@@ -13,13 +13,14 @@ const Content = styled.div`
   justify-content: space-between;
   background: ${variables.light};
   padding: 2rem;
+  transition: all .8s;
   
   p{
     font-size: 1.4rem;
     color: ${variables.textColorSecondary};
     margin: 0;
   }
-  transition: all .3s;
+  
   
   &:hover {
     cursor: pointer;

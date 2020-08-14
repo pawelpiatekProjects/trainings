@@ -6,6 +6,7 @@ export const light = '#fff';
 export const yellowPrimary = '#F9C409';
 export const grayPrimary = '#eee';
 export const graySecondary = '#efefef';
+export const thirdGray = '#c3c3c3'
 export const errorRed = '#f85a40';
 
 
