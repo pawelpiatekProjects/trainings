@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled from 'styled-components';
 import TopNav from "../navigation/topNav";
 import * as variables from '../../assets/variables';
@@ -6,6 +6,7 @@ import SideNavigation from "../navigation/sideNavigation";
 import LastTraining from "./lastTraining/lastTraining";
 import TrainingsList from "./trainingsList/trainingsList";
 import NewTraining from "./newTraining/newTraining";
+import gsap from 'gsap';
 
 const TrainingsWrapper = styled.div`
     background: ${variables.grayPrimary};
@@ -99,6 +100,32 @@ const lastTraining = {
 
 //todo: add nested routes
 const TrainingsContent = () => {
+
+    const wrapper = useRef(null);
+
+    useEffect(() => {
+        // const [elements] = wrapper.current.children;
+        // console.log(elements)
+        const sideBar = document.querySelector('#sideBar');
+        const grid = document.querySelector('#grid');
+        console.log(sideBar);
+        console.log(grid)
+        // const lines = elements.getElementById('lines');
+        // console.log(sideBar)
+
+        //todo: fix
+
+        // gsap.set([sideBar, grid], {autoAlpha: 0});
+        // // gsap.set(lines, {transformOrigin: '50% 50%'});
+        // //
+        // //
+        // const tl = gsap.timeline({defaults: {ease: 'power3.inOut'}});
+        // //
+        // tl.fromTo(sideBar, {x: '-=200'}, {duration: 1, x: '+=200', autoAlpha: 1})
+        //     .fromTo(grid, {scaleY: .85}, {ease:'power3.inOut', duration: .4, autoAlpha: 1, scaleY: 1})
+
+    })
+
     const [isSideNavOpen, setIsSideNavOpen] = useState(false);
     const handleSideBarEnter = () => {
         setIsSideNavOpen(true);
@@ -107,28 +134,31 @@ const TrainingsContent = () => {
         setIsSideNavOpen(false);
     }
     return (
-        <TrainingsWrapper>
+        <div>
+            <TrainingsWrapper >
 
-            <SideBar onMouseOver={handleSideBarEnter} onMouseOut={handleSideBarExit}>
-                <SideNavigationWrapper>
-                    <SideNavigation display={isSideNavOpen}/>
-                </SideNavigationWrapper>
-            </SideBar>
-            <Grid>
-                <NavigationWrapper>
-                    <TopNav displayLogo={false}/>
-                </NavigationWrapper>
-                <LastTrainingWrapper>
-                    <LastTraining lastTraining={lastTraining}/>
-                </LastTrainingWrapper>
-                <TrainingsListWrapper>
-                    <TrainingsList/>
-                </TrainingsListWrapper>
-                <NewTrainingWrapper>
-                    <NewTraining/>
-                </NewTrainingWrapper>
-            </Grid>
-        </TrainingsWrapper>
+                <SideBar onMouseOver={handleSideBarEnter} onMouseOut={handleSideBarExit} id='sideBar'>
+                    <SideNavigationWrapper>
+                        <SideNavigation display={isSideNavOpen}/>
+                    </SideNavigationWrapper>
+                </SideBar>
+                <Grid id='grid'>
+                    <NavigationWrapper>
+                        <TopNav displayLogo={false}/>
+                    </NavigationWrapper>
+                    <LastTrainingWrapper>
+                        <LastTraining lastTraining={lastTraining}/>
+                    </LastTrainingWrapper>
+                    <TrainingsListWrapper>
+                        <TrainingsList/>
+                    </TrainingsListWrapper>
+                    <NewTrainingWrapper>
+                        <NewTraining/>
+                    </NewTrainingWrapper>
+                </Grid>
+            </TrainingsWrapper>
+        </div>
+
     )
 };
 

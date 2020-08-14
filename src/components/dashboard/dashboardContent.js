@@ -8,15 +8,21 @@ import RecordsList from "./recordsList";
 import RecentActivities from "./recentActivities";
 import GymsNearby from "./gymsNearby";
 import LastTraining from "./lastTraining";
+import Logo from "../Logo";
 
 const DashboardContentWrapper = styled.div`
   background: ${variables.grayPrimary};
   height: 100vh;
+  width: 100%;
 `;
 
 const NavigationWrapper = styled.div`
+  width: 100%;
+  //display: flex;
   height: 10%;
   margin-bottom: 5rem;
+  //padding-left: 10rem;
+  
 `;
 
 const Content = styled.div`
@@ -64,7 +70,7 @@ const DashboardContent = () => {
     return (
         <DashboardContentWrapper>
             <NavigationWrapper>
-                <TopNav displayLogo={true}/>
+                <TopNav/>
             </NavigationWrapper>
             <Content>
                 <ChartLeftWrapper>

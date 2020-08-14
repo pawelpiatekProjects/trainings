@@ -94,13 +94,10 @@ const UserButton = styled.li`
   }
 `;
 
-const TopNav = ({displayLogo}) => {
+const TopNav = () => {
     return (
         <DashboardTopNavWrapper>
             <Navigation>
-                    <Logo display={displayLogo}>
-                        <NavLink to='/'>Logo</NavLink>
-                    </Logo>
                     <NavButtons>
                         <NavLink to='/dashboard'>Dashboard</NavLink>
                         <NavLink to='/trainings'>Trainings</NavLink>
