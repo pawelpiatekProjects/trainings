@@ -54,6 +54,13 @@ const Button = styled.button`
     background: ${variables.yellowPrimary};
     color: ${variables.light};
     border: 2px solid ${variables.light};
+    transform: scale(1.1);
+    outline: none;
+  }
+  
+  &:focus{
+    outline: none;
+    transform: scale(1);
   }
 `;
 
