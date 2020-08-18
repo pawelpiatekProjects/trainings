@@ -4,7 +4,7 @@ import SideNavigation from "../navigation/sideNavigation";
 import TopNav from "../navigation/topNav";
 import Calendar from "./calendar";
 import * as variables from "../../assets/variables";
-import TrainingDetails from "./trainingDetails";
+import TrainingDetails from "./trainingDetails/trainingDetails";
 
 const CalendarContentWrapper = styled.div`
     background: ${variables.grayPrimary};
@@ -19,6 +19,7 @@ const Grid = styled.div`
   padding: 10rem;
   grid-template-columns: 50% 50%;
   grid-template-rows: 1fr 1fr;
+
   grid-gap: 5rem;
   height: 100%;
   width: calc(100% - 15rem);
@@ -68,7 +69,7 @@ const NavigationWrapper = styled.div`
 
 const TrainingDetailsWrapper = styled.div`
   grid-column: 1/ span 1;
-  grid-row: 1/ span 1;
+  grid-row: 1/ span 2;
   
   margin-top: 5rem;
 `;
