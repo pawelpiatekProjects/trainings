@@ -10,6 +10,11 @@ const ChartRightWrapper = styled.div`
   padding: 2rem;
   height: 25rem;
   background: ${variables.yellowPrimary};
+  z-index: 1;
+  
+  svg {
+    z-index: 1;
+  }
 `;
 
 const data = [
@@ -41,6 +46,7 @@ const ChartRight = () => {
         <ChartRightWrapper>
             <ResponsiveContainer>
                 <BarChart
+                    style={{zIndex: 1}}
                     data={data}
                 >
                     <CartesianGrid strokeDasharray="3 3"/>

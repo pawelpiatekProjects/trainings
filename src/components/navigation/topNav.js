@@ -84,6 +84,8 @@ const NavButtons = styled.li`
   }
 `;
 
+
+
 const UserButton = styled.li`
   grid-column: 3/ span 1;
   text-align: right;
@@ -93,17 +95,32 @@ const UserButton = styled.li`
     text-decoration: none;
     color: ${variables.textColorPrimary};
   }
+  
+  &:hover ul{
+    transform: scale(1);
+    opacity: 1;
+  }
+  
+  &:hover svg {
+    color: ${variables.yellowPrimary};
+  }
 `;
 
 const UserOptions = styled.ul`
+  transition: all .3s;
+  transform-origin: top right;
   position: absolute;
-  top: 4rem;
+  top: 3.5rem;
   right: 0;
   background: ${variables.light};
   padding: 2rem;
   width: 15rem;
   height: 12rem;
+  //transform: scaleY(0);
+  transform: scale(0);
+  opacity: 0;
   box-shadow: ${variables.dashboardItemBoxShadow};
+  z-index: ${variables.navigationZIndex};
   li {
     width: 100%;
     list-style: none;
@@ -125,7 +142,9 @@ const UserOptions = styled.ul`
   }
 `;
 
-
+//todo: change hierarchy (some div abowe User button)'
+//todo: add bigger z-index to topnav
+//todo: add searchbar for searching through trainings
 const TopNav = () => {
     return (
         <DashboardTopNavWrapper>
@@ -136,19 +155,18 @@ const TopNav = () => {
                         <NavLink to='/calendar'>Calendar</NavLink>
                     </NavButtons>
                     <UserButton>
-                        <NavLink to='/account'>
-                            <FontAwesomeIcon icon={faUserInjured}/>
-                        </NavLink>
-                        <UserOptions>
-                            <li>
-                                <NavLink to='/settings'>Settings</NavLink>
-                            </li>
-                            <li>
-                                <NavLink to='/signOut'>Sign Out</NavLink>
-                            </li>
-                        </UserOptions>
+                            <NavLink to='/account'>
+                                <FontAwesomeIcon icon={faUserInjured}/>
+                            </NavLink>
+                            <UserOptions>
+                                <li>
+                                    <NavLink to='/settings'>Settings</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to='/signOut'>Sign Out</NavLink>
+                                </li>
+                            </UserOptions>
                     </UserButton>
-
             </Navigation>
         </DashboardTopNavWrapper>
     )
