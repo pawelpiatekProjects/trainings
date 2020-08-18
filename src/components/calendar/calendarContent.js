@@ -4,18 +4,20 @@ import SideNavigation from "../navigation/sideNavigation";
 import TopNav from "../navigation/topNav";
 import Calendar from "./calendar";
 import * as variables from "../../assets/variables";
+import TrainingDetails from "./trainingDetails";
 
 const CalendarContentWrapper = styled.div`
     background: ${variables.grayPrimary};
     width: 100%;
     height: 100vh;
     position: relative;
+    
 `;
 
 const Grid = styled.div`
   display: grid;
   padding: 10rem;
-  grid-template-columns: 60% 40%;
+  grid-template-columns: 50% 50%;
   grid-template-rows: 1fr 1fr;
   grid-gap: 5rem;
   height: 100%;
@@ -61,16 +63,21 @@ const NavigationWrapper = styled.div`
   top: 0;
   left: 0;
   width: 100%;
+  
 `;
 
-const TrainingDetails = styled.div`
+const TrainingDetailsWrapper = styled.div`
   grid-column: 1/ span 1;
   grid-row: 1/ span 1;
+  
+  margin-top: 5rem;
 `;
 
 const CalendarWrapper = styled.div`
   grid-column: 2/ -1;
   grid-row: 1/ span 1;
+  
+  margin-top: 5rem;
 `;
 
 
@@ -96,9 +103,9 @@ const CalendarContent = () => {
                     <NavigationWrapper>
                         <TopNav displayLogo={false}/>
                     </NavigationWrapper>
-                    <TrainingDetails>
+                    <TrainingDetailsWrapper>
                         <TrainingDetails/>
-                    </TrainingDetails>
+                    </TrainingDetailsWrapper>
                     <CalendarWrapper>
                         <Calendar/>
                     </CalendarWrapper>
