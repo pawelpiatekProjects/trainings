@@ -9,6 +9,7 @@ import SignIn from "./pages/signIn";
 import SignUp from "./pages/signUp";
 import Dashboard from "./pages/dashboard";
 import Trainings from "./pages/trainings";
+import Calendar from "./pages/calendar";
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/sign-up" component={SignUp}/>
                 <Route path="/dashboard" component={Dashboard}/>
                 <Route path="/trainings" component={Trainings}/>
+                <Route path="/calendar" component={Calendar}/>
                 <Route path="/" component={Home}/>
             </Switch>
         </div>
