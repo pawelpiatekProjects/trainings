@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Calendar from 'react-calendar';
 import * as variables from '../../assets/variables';
 import 'react-calendar/dist/Calendar.css';
+import {dates} from './dates';
 
 const CalendarWrapper = styled.div`
   background: ${variables.light};
@@ -47,9 +48,22 @@ const CalendarWrapper = styled.div`
 
 const CalendarComponent = () => {
     const [value, onSetValue] = useState(new Date())
+    const onClickDay = (value) => {
+        // console.log(value.toISOString())
+        const local = dates.map(date => date.toLocaleString().split(',')[0]);
+        const today = value.toLocaleString().split(',')[0]
+
+        const openedTraining = local.filter(el => el === today)[0];
+        console.log(openedTraining);
+
+    }
+
     return (
         <CalendarWrapper>
-            <Calendar onChange={onSetValue} value={value}/>
+            <Calendar
+                onChange={onSetValue}
+                onClickDay={onClickDay}
+                value={value}/>
         </CalendarWrapper>
     )
 };

@@ -91,6 +91,7 @@ const CalendarContent = () => {
     const handleSideBarExit = () => {
         setIsSideNavOpen(false);
     }
+    //todo: show training details
     return (
         <CalendarContentWrapper>
 
