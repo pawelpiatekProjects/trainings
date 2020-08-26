@@ -47,37 +47,27 @@ const CalendarWrapper = styled.div`
 `;
 
 const TrainingDay = styled.div`
-  // width: 70%;
-  // margin: 0 auto;
-  // border-bottom: 1px solid ${variables.yellowPrimary};
   width: 1rem;
   height: 1rem;
   border-radius: 50%;
   margin: 0 auto;
-  background: ${variables.yellowPrimary};
+  border: 2px solid ${variables.yellowPrimary};
 `;
 
 const CalendarComponent = () => {
     const [value, onSetValue] = useState(new Date())
     const local = dates.map(date => date.toLocaleString().split(',')[0]);
     const onClickDay = (value) => {
-        // console.log(value.toISOString())
-
         const today = value.toLocaleString().split(',')[0]
-
         const openedTraining = local.filter(el => el === today)[0];
         console.log(openedTraining);
-
     }
-
     return (
         <CalendarWrapper>
             <Calendar
-                tileContent={({ activeStartDate, date, view }) => {
-
-                    const day = date.toLocaleString().split(',')[0]
-                    console.log(day)
-                  return  local.includes(day) ?  <TrainingDay/> : null
+                tileContent={({date}) => {
+                 const day = date.toLocaleString().split(',')[0];
+                 return  local.includes(day) ?  <TrainingDay/> : null;
                 }}
                 onChange={onSetValue}
                 onClickDay={onClickDay}
