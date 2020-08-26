@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import styled from 'styled-components';
 import Calendar from 'react-calendar';
 import * as variables from '../../assets/variables';
@@ -46,11 +46,23 @@ const CalendarWrapper = styled.div`
   }
 `;
 
+const TrainingDay = styled.div`
+  // width: 70%;
+  // margin: 0 auto;
+  // border-bottom: 1px solid ${variables.yellowPrimary};
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  margin: 0 auto;
+  background: ${variables.yellowPrimary};
+`;
+
 const CalendarComponent = () => {
     const [value, onSetValue] = useState(new Date())
+    const local = dates.map(date => date.toLocaleString().split(',')[0]);
     const onClickDay = (value) => {
         // console.log(value.toISOString())
-        const local = dates.map(date => date.toLocaleString().split(',')[0]);
+
         const today = value.toLocaleString().split(',')[0]
 
         const openedTraining = local.filter(el => el === today)[0];
@@ -61,6 +73,12 @@ const CalendarComponent = () => {
     return (
         <CalendarWrapper>
             <Calendar
+                tileContent={({ activeStartDate, date, view }) => {
+
+                    const day = date.toLocaleString().split(',')[0]
+                    console.log(day)
+                  return  local.includes(day) ?  <TrainingDay/> : null
+                }}
                 onChange={onSetValue}
                 onClickDay={onClickDay}
                 value={value}/>
