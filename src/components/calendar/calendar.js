@@ -1,9 +1,10 @@
 import React, {useState, useRef, useEffect} from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Calendar from 'react-calendar';
 import * as variables from '../../assets/variables';
 import 'react-calendar/dist/Calendar.css';
-import {dates} from './dates';
+
 
 const CalendarWrapper = styled.div`
   background: ${variables.light};
@@ -54,13 +55,21 @@ const TrainingDay = styled.div`
   border: 2px solid ${variables.yellowPrimary};
 `;
 
-const CalendarComponent = () => {
+const CalendarComponent = ({trainingsList, setActiveTraining}) => {
     const [value, onSetValue] = useState(new Date())
-    const local = dates.map(date => date.toLocaleString().split(',')[0]);
+    // console.log(trainingsList)
+    const local = trainingsList.map(date => date.date.toLocaleString().split(',')[0]);
+    // const local = ''
     const onClickDay = (value) => {
+        // console.log(value)
         const today = value.toLocaleString().split(',')[0]
-        const openedTraining = local.filter(el => el === today)[0];
-        console.log(openedTraining);
+        const openedTraining = trainingsList.filter(el => el.date === today)[0];
+        if(openedTraining){
+            setActiveTraining(openedTraining);
+        }else{
+            setActiveTraining(null);
+        }
+
     }
     return (
         <CalendarWrapper>
@@ -75,5 +84,10 @@ const CalendarComponent = () => {
         </CalendarWrapper>
     )
 };
+
+CalendarComponent.propTypes = {
+    trainingsList: PropTypes.array,
+    setActiveTraining: PropTypes.func
+}
 
 export default CalendarComponent;

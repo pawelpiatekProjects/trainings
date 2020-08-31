@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import * as variables from '../../../assets/variables';
 import EmptyList from "./emptyList";
+import Training from "./training";
 
 const TrainingDetailsWrapper = styled.div`
   width: 100%;
@@ -9,13 +11,17 @@ const TrainingDetailsWrapper = styled.div`
   
 `;
 
-const TrainingDetails = () => {
+const TrainingDetails = ({activeTraining}) => {
     return (
         <TrainingDetailsWrapper>
-            <EmptyList/>
+            {activeTraining ? <Training activeTraining={activeTraining}/> : <EmptyList/>}
         </TrainingDetailsWrapper>
     )
 };
+
+TrainingDetails.propTypes = {
+    activeTraining: PropTypes.object
+}
 
 export default TrainingDetails;
 

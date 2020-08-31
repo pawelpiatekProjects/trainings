@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import styled from "styled-components";
 import SideNavigation from "../navigation/sideNavigation";
 import TopNav from "../navigation/topNav";
@@ -83,7 +84,7 @@ const CalendarWrapper = styled.div`
 
 
 
-const CalendarContent = () => {
+const CalendarContent = ({trainingsList, setActiveTraining, activeTraining}) => {
     const [isSideNavOpen, setIsSideNavOpen] = useState(false);
     const handleSideBarEnter = () => {
         setIsSideNavOpen(true);
@@ -106,15 +107,21 @@ const CalendarContent = () => {
                         <TopNav displayLogo={false}/>
                     </NavigationWrapper>
                     <TrainingDetailsWrapper>
-                        <TrainingDetails/>
+                        <TrainingDetails activeTraining={activeTraining}/>
                     </TrainingDetailsWrapper>
                     <CalendarWrapper>
-                        <Calendar/>
+                        <Calendar trainingsList={trainingsList} setActiveTraining={setActiveTraining}/>
                     </CalendarWrapper>
                 </Grid>
 
         </CalendarContentWrapper>
     )
 };
+
+CalendarContent.propTypes = {
+    trainingsList: PropTypes.array,
+    setActiveTraining: PropTypes.func,
+    activeTraining: PropTypes.object
+}
 
 export default CalendarContent;
