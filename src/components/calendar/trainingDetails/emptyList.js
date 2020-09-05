@@ -22,7 +22,7 @@ const EmptyList = () => {
     return (
         <EmptyListWrapper>
             <FontAwesomeIcon icon={faCalendarTimes}/>
-            <p>No trainings in this period of time,</p>
+            <p>No training that day,</p>
             <p>Select time period</p>
         </EmptyListWrapper>
     )

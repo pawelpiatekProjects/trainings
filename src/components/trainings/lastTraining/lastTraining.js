@@ -93,7 +93,7 @@ const Circle = styled.div`
 `;
 
 const LastTraining = ({lastTraining: {date, plan, day}}) => {
-    console.log(date)
+    // console.log(date)
     return (
         <LastTrainingWrapper>
             <LastTrainingHeader>Last Training</LastTrainingHeader>

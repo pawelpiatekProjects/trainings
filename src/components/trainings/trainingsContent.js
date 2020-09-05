@@ -108,8 +108,8 @@ const TrainingsContent = () => {
         // console.log(elements)
         const sideBar = document.querySelector('#sideBar');
         const grid = document.querySelector('#grid');
-        console.log(sideBar);
-        console.log(grid)
+        // console.log(sideBar);
+        // console.log(grid)
         // const lines = elements.getElementById('lines');
         // console.log(sideBar)
 

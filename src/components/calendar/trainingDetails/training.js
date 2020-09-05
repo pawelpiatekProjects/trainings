@@ -125,15 +125,16 @@ const Training = ({activeTraining}) => {
                     <FontAwesomeIcon icon={faBookmark}/>
                 </TrainingHeaderIcon>
             </TrainingHeader>
-            {activeTraining.exercises.map(exercise => (
+            //todo: move exercises to separate div
+            {/*{activeTraining.exercises.map(exercise => (*/}
 
-                <Exercise>
-                    <ExerciseItem>{exercise.name}</ExerciseItem>
-                    <ExerciseItem>{exercise.series}</ExerciseItem>
-                    <ExerciseItem>{exercise.reps}</ExerciseItem>
-                </Exercise>
+            {/*    <Exercise>*/}
+            {/*        <ExerciseItem>{exercise.name}</ExerciseItem>*/}
+            {/*        <ExerciseItem>{exercise.series}</ExerciseItem>*/}
+            {/*        <ExerciseItem>{exercise.reps}</ExerciseItem>*/}
+            {/*    </Exercise>*/}
 
-            ))}
+            {/*))}*/}
         </TrainingWrapper>
     )
 };

@@ -26,7 +26,7 @@ const Calendar = () => {
         setTimeout(()=>{
             setLoading(false);
             setActiveTraining(training);
-        }, 700)
+        }, 500)
     }
 
     useEffect(() => {

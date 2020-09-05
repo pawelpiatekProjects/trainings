@@ -42,7 +42,7 @@ const NavItem = styled.li`
         color: ${variables.grayPrimary};
       }
       p{
-        transition: all .3s;
+        //transition: all .3s;
         //display: ${props => props.display ? 'inline-block' : 'none'};
         transform: ${props => props.display ? `translateX(0)` : `scale(-100rem)`};
         opacity : ${props => props.display ? `1` : `0`};
@@ -52,13 +52,13 @@ const NavItem = styled.li`
      
  
   }
-   transition: all .3s;
+   //transition: all .3s;
    &:hover {
     background: ${variables.light};
-    L
+    
     cursor: pointer;
     //width: 150%;
-    transition: all .3s;
+    //transition: all .3s;
     svg, p{
     color: ${variables.textColorPrimary};
     }
@@ -73,9 +73,9 @@ const SideNavigation = ({display}) => {
     const handleMouseEnter = () => {
         // console.log('mouse enter')
         setIsMenuItemTextDisplayed(!isMenuItemTextDisplayed);
-        console.log(isMenuItemTextDisplayed);
+        // console.log(isMenuItemTextDisplayed);
     }
-    console.log(display)
+    // console.log(display)
     return (
         //todo: add dynamic content to sidebar
         <SideNavWrapper>
