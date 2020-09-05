@@ -5,6 +5,7 @@ import { dates } from '../components/calendar/dates';
 const Calendar = () => {
     const [trainingsList, setTrainingsList] = useState([]);
     const [activeTraining, setActiveTraining] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const fetchTrainings = () => {
         // const local = dates.map(date => date.date.toLocaleString().split(',')[0]);
@@ -19,10 +20,13 @@ const Calendar = () => {
         setTrainingsList(local);
     }
 
-    const onClickDay = (value) => {
-        const today = value.toLocaleString().split(',')[0]
-        const openedTraining = trainingsList.filter(el => el === today)[0];
-        console.log(openedTraining);
+    const displayTraining = (training) => {
+       console.log(training)
+        setLoading(true);
+        setTimeout(()=>{
+            setLoading(false);
+            setActiveTraining(training);
+        }, 700)
     }
 
     useEffect(() => {
@@ -35,9 +39,10 @@ const Calendar = () => {
     return (
 
         <CalendarContent
+            loading={loading}
             trainingsList={trainingsList}
-            setActiveTraining={setActiveTraining}
             activeTraining={activeTraining}
+            displayTraining={displayTraining}
         />
     )
 };

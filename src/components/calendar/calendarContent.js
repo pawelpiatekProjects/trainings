@@ -6,6 +6,7 @@ import TopNav from "../navigation/topNav";
 import Calendar from "./calendar";
 import * as variables from "../../assets/variables";
 import TrainingDetails from "./trainingDetails/trainingDetails";
+import Loader from 'react-loader-spinner'
 
 const CalendarContentWrapper = styled.div`
     background: ${variables.grayPrimary};
@@ -82,9 +83,15 @@ const CalendarWrapper = styled.div`
   margin-top: 5rem;
 `;
 
+const LoaderWrapper = styled.div`
+  grid-column: 1/ span 1;
+  grid-row: 1/ span 2;
+  
+  margin-top: 10rem;
+`
 
 
-const CalendarContent = ({trainingsList, setActiveTraining, activeTraining}) => {
+const CalendarContent = ({trainingsList, activeTraining, displayTraining, loading}) => {
     const [isSideNavOpen, setIsSideNavOpen] = useState(false);
     const handleSideBarEnter = () => {
         setIsSideNavOpen(true);
@@ -92,27 +99,47 @@ const CalendarContent = ({trainingsList, setActiveTraining, activeTraining}) => 
     const handleSideBarExit = () => {
         setIsSideNavOpen(false);
     }
-    //todo: show training details
+    let trainingRender;
+    if (loading) {
+        trainingRender = (
+            <LoaderWrapper>
+                <Loader
+                    type="BallTriangle"
+                    color={variables.yellowPrimary}
+                    height={100}
+                    width={100}
+                />
+            </LoaderWrapper>
+        )
+    } else {
+        trainingRender = (
+            <TrainingDetailsWrapper>
+                <TrainingDetails activeTraining={activeTraining}/>
+            </TrainingDetailsWrapper>
+        )
+    }
+
     return (
         <CalendarContentWrapper>
 
 
-                <SideBar onMouseOver={handleSideBarEnter} onMouseOut={handleSideBarExit} id='sideBar'>
-                    <SideNavigationWrapper>
-                        <SideNavigation display={isSideNavOpen}/>
-                    </SideNavigationWrapper>
-                </SideBar>
-                <Grid id='grid'>
-                    <NavigationWrapper>
-                        <TopNav displayLogo={false}/>
-                    </NavigationWrapper>
-                    <TrainingDetailsWrapper>
-                        <TrainingDetails activeTraining={activeTraining}/>
-                    </TrainingDetailsWrapper>
-                    <CalendarWrapper>
-                        <Calendar trainingsList={trainingsList} setActiveTraining={setActiveTraining}/>
-                    </CalendarWrapper>
-                </Grid>
+            <SideBar onMouseOver={handleSideBarEnter} onMouseOut={handleSideBarExit} id='sideBar'>
+                <SideNavigationWrapper>
+                    <SideNavigation display={isSideNavOpen}/>
+                </SideNavigationWrapper>
+            </SideBar>
+            <Grid id='grid'>
+                <NavigationWrapper>
+                    <TopNav displayLogo={false}/>
+                </NavigationWrapper>
+                {trainingRender}
+                <CalendarWrapper>
+                    <Calendar
+                        trainingsList={trainingsList}
+                        displayTraining={displayTraining}
+                    />
+                </CalendarWrapper>
+            </Grid>
 
         </CalendarContentWrapper>
     )

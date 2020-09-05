@@ -55,19 +55,19 @@ const TrainingDay = styled.div`
   border: 2px solid ${variables.yellowPrimary};
 `;
 
-const CalendarComponent = ({trainingsList, setActiveTraining}) => {
+const CalendarComponent = ({trainingsList, displayTraining}) => {
     const [value, onSetValue] = useState(new Date())
     // console.log(trainingsList)
     const local = trainingsList.map(date => date.date.toLocaleString().split(',')[0]);
     // const local = ''
     const onClickDay = (value) => {
-        // console.log(value)
+        console.log(value)
         const today = value.toLocaleString().split(',')[0]
         const openedTraining = trainingsList.filter(el => el.date === today)[0];
         if(openedTraining){
-            setActiveTraining(openedTraining);
+            displayTraining(openedTraining);
         }else{
-            setActiveTraining(null);
+            displayTraining(null);
         }
 
     }
