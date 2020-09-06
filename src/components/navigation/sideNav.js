@@ -51,6 +51,11 @@ const NavItem = styled.li`
   a{
     text-decoration: none;
     color: ${variables.light};
+    
+    &.active{
+      color: ${variables.textColorPrimary};
+      background: ${variables.light};
+    }
   }
   transition: all .5s;
   &:hover{
@@ -90,23 +95,23 @@ const SideNav = () => {
 
                 <Navigation>
                     <NavItem>
-                        <NavLink to='#'>
+                        <NavLink to='/trainings/list'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faList}/>
-                                <p>Training Plans</p>
-                            </NavItemContent>
-                        </NavLink>
-                    </NavItem>
-                    <NavItem>
-                        <NavLink to='#'>
-                            <NavItemContent>
-                                <FontAwesomeIcon icon={faDumbbell}/>
                                 <p>Trainings List</p>
                             </NavItemContent>
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink to='#'>
+                        <NavLink to='/trainings/plans'>
+                            <NavItemContent>
+                                <FontAwesomeIcon icon={faDumbbell}/>
+                                <p>Training Plans</p>
+                            </NavItemContent>
+                        </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink to='/settings'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faCogs}/>
                                 <p>Settings</p>
@@ -114,7 +119,7 @@ const SideNav = () => {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink to='#'>
+                        <NavLink to='/account'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faUser}/>
                                 <p>Account</p>
@@ -122,7 +127,7 @@ const SideNav = () => {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink to='#'>
+                        <NavLink to='/logout'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faSignOutAlt}/>
                                 <p>Sign Out</p>

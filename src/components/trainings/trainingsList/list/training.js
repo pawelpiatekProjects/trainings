@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import * as variables from '../../../assets/variables';
+import * as variables from '../../../../assets/variables';
 
 const TrainingWrapper = styled.div`
   height: 6rem;

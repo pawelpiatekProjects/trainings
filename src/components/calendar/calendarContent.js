@@ -7,6 +7,7 @@ import Calendar from "./calendar";
 import * as variables from "../../assets/variables";
 import TrainingDetails from "./trainingDetails/trainingDetails";
 import Loader from 'react-loader-spinner'
+import SideNav from "../navigation/sideNav";
 
 const CalendarContentWrapper = styled.div`
     background: ${variables.grayPrimary};
@@ -30,33 +31,6 @@ const Grid = styled.div`
   top: 0;
   left: 10rem;
   
-`;
-
-const SideBar = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 10rem;
-  transition: all .3s;
-  background: ${variables.yellowPrimary};
-  position: relative;
-  z-index: ${variables.navigationZIndex};
-  box-shadow: 1px 0px 12px -7px rgba(0,0,0,0.75);
-  &:hover {
-  width: 25rem;
-  //cursor: pointer;
-  //box-shadow: 1px 0px 12px -6px rgba(0,0,0,0.75);
-  }
-`;
-
-const SideNavigationWrapper = styled.div`
-  width: 100%;
-  //height: 100%;
-   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
 `;
 
 const NavigationWrapper = styled.div`
@@ -92,13 +66,6 @@ const LoaderWrapper = styled.div`
 
 
 const CalendarContent = ({trainingsList, activeTraining, displayTraining, loading}) => {
-    const [isSideNavOpen, setIsSideNavOpen] = useState(false);
-    const handleSideBarEnter = () => {
-        setIsSideNavOpen(true);
-    }
-    const handleSideBarExit = () => {
-        setIsSideNavOpen(false);
-    }
     let trainingRender;
     if (loading) {
         trainingRender = (
@@ -118,17 +85,9 @@ const CalendarContent = ({trainingsList, activeTraining, displayTraining, loadin
             </TrainingDetailsWrapper>
         )
     }
-
     return (
         <CalendarContentWrapper>
-
-
-            {/*<SideBar onMouseOver={handleSideBarEnter} onMouseOut={handleSideBarExit} id='sideBar'>*/}
-            {/*    <SideNavigationWrapper>*/}
-            {/*        <SideNavigation display={isSideNavOpen}/>*/}
-            {/*    </SideNavigationWrapper>*/}
-            {/*</SideBar>*/}
-
+            <SideNav/>
             <Grid id='grid'>
                 <NavigationWrapper>
                     <TopNav displayLogo={false}/>
@@ -141,7 +100,6 @@ const CalendarContent = ({trainingsList, activeTraining, displayTraining, loadin
                     />
                 </CalendarWrapper>
             </Grid>
-
         </CalendarContentWrapper>
     )
 };

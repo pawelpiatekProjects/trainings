@@ -57,7 +57,7 @@ const TrainingDay = styled.div`
 
 const CalendarComponent = ({trainingsList, displayTraining}) => {
     const [value, onSetValue] = useState(new Date())
-    // console.log(trainingsList)
+    // console.log(list)
     const local = trainingsList.map(date => date.date.toLocaleString().split(',')[0]);
     // const local = ''
     const onClickDay = (value) => {

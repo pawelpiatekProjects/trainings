@@ -10,12 +10,16 @@ const DashboardTopNavWrapper = styled.nav`
 `;
 
 const Navigation = styled.ul`
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 1rem;
   padding: 3.5rem;
   display: grid;
   grid-template-columns: 30% 50% 20%;
   list-style: none;
   align-items: center;
-  height: 100%;
+  //height: 100%;
   z-index: ${variables.navigationZIndex};
 `;
 
@@ -151,7 +155,7 @@ const TopNav = () => {
             <Navigation>
                     <NavButtons>
                         <NavLink to='/dashboard'>Dashboard</NavLink>
-                        <NavLink to='/trainings'>Trainings</NavLink>
+                        <NavLink to='/trainings/list'>Trainings</NavLink>
                         <NavLink to='/calendar'>Calendar</NavLink>
                     </NavButtons>
                     <UserButton>

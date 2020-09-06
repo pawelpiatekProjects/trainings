@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import * as variables from '../../../assets/variables';
+import * as variables from '../../../../assets/variables';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faClock} from "@fortawesome/free-solid-svg-icons";
 

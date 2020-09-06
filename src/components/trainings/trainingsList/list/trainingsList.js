@@ -4,7 +4,7 @@ import {trainings} from './testTrainingsList';
 import Training from "./training";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCalendarAlt, faClipboard, faCalendarCheck} from "@fortawesome/free-solid-svg-icons";
-import * as variables from '../../../assets/variables';
+import * as variables from '../../../../assets/variables';
 
 const TrainingsListWrapper = styled.div`
   
