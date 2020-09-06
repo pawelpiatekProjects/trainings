@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import * as variables from '../../../../assets/variables';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDumbbell} from "@fortawesome/free-solid-svg-icons";
+import {Button} from '../../../../components/UIComponents/primaryButton';
 
 const NewTrainingWrapper = styled.div`
   width: 100%;
@@ -42,27 +43,6 @@ width: 100%;
   
 `;
 
-const Button = styled.button`
-  margin-top: 2rem;
-  background: ${variables.light};
-  padding: 1rem 3rem;
-  font-size: 1.4rem;
-  border: 2px solid ${variables.yellowPrimary};
-  transition: all .3s;
-  
-  &:hover{
-    background: ${variables.yellowPrimary};
-    color: ${variables.light};
-    border: 2px solid ${variables.light};
-    transform: scale(1.1);
-    outline: none;
-  }
-  
-  &:focus{
-    outline: none;
-    transform: scale(1);
-  }
-`;
 
 const NewTraining = () => {
     return (

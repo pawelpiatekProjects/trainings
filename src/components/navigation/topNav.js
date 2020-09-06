@@ -6,15 +6,17 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUserInjured} from "@fortawesome/free-solid-svg-icons";
 
 const DashboardTopNavWrapper = styled.nav`
+  
 
 `;
 
 const Navigation = styled.ul`
+  background: ${variables.grayPrimary};
   position: fixed;
   width: 100%;
   top: 0;
   left: 1rem;
-  padding: 3.5rem;
+  padding: 2rem 3rem;
   display: grid;
   grid-template-columns: 30% 50% 20%;
   list-style: none;
@@ -22,6 +24,7 @@ const Navigation = styled.ul`
   //height: 100%;
   z-index: ${variables.navigationZIndex};
 `;
+
 
 
 
