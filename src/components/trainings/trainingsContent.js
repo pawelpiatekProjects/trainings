@@ -7,6 +7,7 @@ import LastTraining from "./lastTraining/lastTraining";
 import TrainingsList from "./trainingsList/trainingsList";
 import NewTraining from "./newTraining/newTraining";
 import gsap from 'gsap';
+import SideNav from "../navigation/sideNav";
 
 const TrainingsWrapper = styled.div`
     background: ${variables.grayPrimary};
@@ -137,11 +138,12 @@ const TrainingsContent = () => {
         <div>
             <TrainingsWrapper >
 
-                <SideBar onMouseOver={handleSideBarEnter} onMouseOut={handleSideBarExit} id='sideBar'>
-                    <SideNavigationWrapper>
-                        <SideNavigation display={isSideNavOpen}/>
-                    </SideNavigationWrapper>
-                </SideBar>
+                {/*<SideBar onMouseOver={handleSideBarEnter} onMouseOut={handleSideBarExit} id='sideBar'>*/}
+                {/*    <SideNavigationWrapper>*/}
+                {/*        <SideNavigation display={isSideNavOpen}/>*/}
+                {/*    </SideNavigationWrapper>*/}
+                {/*</SideBar>*/}
+                <SideNav/>
                 <Grid id='grid'>
                     <NavigationWrapper>
                         <TopNav displayLogo={false}/>

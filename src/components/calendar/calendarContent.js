@@ -123,11 +123,12 @@ const CalendarContent = ({trainingsList, activeTraining, displayTraining, loadin
         <CalendarContentWrapper>
 
 
-            <SideBar onMouseOver={handleSideBarEnter} onMouseOut={handleSideBarExit} id='sideBar'>
-                <SideNavigationWrapper>
-                    <SideNavigation display={isSideNavOpen}/>
-                </SideNavigationWrapper>
-            </SideBar>
+            {/*<SideBar onMouseOver={handleSideBarEnter} onMouseOut={handleSideBarExit} id='sideBar'>*/}
+            {/*    <SideNavigationWrapper>*/}
+            {/*        <SideNavigation display={isSideNavOpen}/>*/}
+            {/*    </SideNavigationWrapper>*/}
+            {/*</SideBar>*/}
+
             <Grid id='grid'>
                 <NavigationWrapper>
                     <TopNav displayLogo={false}/>

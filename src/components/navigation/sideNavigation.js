@@ -27,7 +27,7 @@ const NavItem = styled.li`
     width: 100%;
     position: absolute;
     top: 50%;
-    left: 5rem;;
+    left: 5rem;
     transform: ${props => props.display ? `translate(0,-50%)` : `translate(-20%,-50%)`};
     //transform: translate(-50%,-50%);
     display: inline-block;
