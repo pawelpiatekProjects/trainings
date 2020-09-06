@@ -7,18 +7,17 @@ import {faBookmark} from "@fortawesome/free-solid-svg-icons";
 
 
 const TrainingWrapper = styled.div`
-  background: ${variables.light};
-  padding: 3rem;
-   width: 80%;
+  width: 80%;
   margin: 0 auto;
-  box-shadow: ${variables.dashboardItemBoxShadow};
-  border-left: 8px solid ${variables.yellowPrimary};
 `;
 
 const TrainingHeader = styled.div`
- display: flex;
+  padding: 2rem;
+  display: flex;
   align-items: start;
-  margin-bottom: 3rem;
+  background: ${variables.light};
+  box-shadow: ${variables.dashboardItemBoxShadow};
+  border-left: 8px solid ${variables.yellowPrimary};
 `;
 
 const TrainingHeaderDay = styled.h1`
@@ -28,29 +27,73 @@ const TrainingHeaderDay = styled.h1`
   
 `;
 
-const TrainingHeaderRest = styled.p`
-  font-weight: 700;
+const HeaderInfo = styled.div`
   margin: 1.5rem 0 0 0;
 `;
 
-const TrainingHeaderIcon = styled.p`
-  margin-left: 1rem;
-  color: ${variables.yellowPrimary};
-  font-size: 2rem;
+const TrainingHeaderRest = styled.p`
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.9rem;
+`;
+
+const TrainingName = styled.p`
+  margin: 0;
+  font-size: 1.6rem;
+  color: ${variables.thirdGray};
+`;
+
+const Exercises = styled.div`
+  margin-top: 3rem;
+  
+`;
+
+const ExercisesHeader = styled.ul`
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid ${variables.thirdGray};
+  padding: 1rem;
+`;
+
+const ExercisesHeaderItem = styled.li`
+  margin: 0 1rem;
+  font-size: 1.4rem;
+  color: ${variables.thirdGray};
+  font-weight: 700;
 `;
 
 const Exercise = styled.ul`
   list-style: none;
+  list-style: none;
   display: flex;
   justify-content: space-between;
- 
+  padding: 1rem;
+  background: ${variables.light};
+  margin: 1rem auto;
+  box-shadow: ${variables.dashboardItemBoxShadow};
+  border-bottom: 4px solid ${variables.yellowPrimary};
+  transition: all .3s;
+  
+  &:hover{
+    background: ${variables.yellowPrimary};
+    border-bottom: 4px solid ${variables.light};
+    cursor: pointer;
+    
+    li{
+     color: ${variables.light};
+    }
+  }
+  
+  
 `;
 
 const ExerciseItem = styled.li`
-   //display: inline-block;
-   //margin-right: .5rem;
-   font-size: 1.6rem;
+  margin: 0 1rem;
+  font-size: 1.4rem;
+  color: ${variables.textColorPrimary};
 `;
+
 
 const handleMonthName = (monthNumber) => {
     let monthName;
@@ -114,27 +157,32 @@ const Training = ({activeTraining}) => {
     const date = activeTraining.date.split('.');
     const day = date[0];
     const monthAndYear = handleMonthName(date[1]) + ' ' + date[2]
-    console.log((monthAndYear));
-
+    console.log((activeTraining));
+//todo: move exercises to separate div
     return (
         <TrainingWrapper>
             <TrainingHeader>
                 <TrainingHeaderDay>{day}</TrainingHeaderDay>
-                <TrainingHeaderRest>{monthAndYear}</TrainingHeaderRest>
-                <TrainingHeaderIcon>
-                    <FontAwesomeIcon icon={faBookmark}/>
-                </TrainingHeaderIcon>
+                <HeaderInfo>
+                    <TrainingHeaderRest>{monthAndYear}</TrainingHeaderRest>
+                    <TrainingName>Training 3 Day A</TrainingName>
+                </HeaderInfo>
             </TrainingHeader>
-            //todo: move exercises to separate div
-            {/*{activeTraining.exercises.map(exercise => (*/}
+            <Exercises>
+                <ExercisesHeader>
+                    <ExercisesHeaderItem>Exercise</ExercisesHeaderItem>
+                    <ExercisesHeaderItem>Series</ExercisesHeaderItem>
+                    <ExercisesHeaderItem>Reps</ExercisesHeaderItem>
+                </ExercisesHeader>
+                    {activeTraining.exercises.map(exercise => (
+                        <Exercise>
+                            <ExerciseItem>{exercise.name}</ExerciseItem>
+                            <ExerciseItem>{exercise.series}</ExerciseItem>
+                            <ExerciseItem>{exercise.reps}</ExerciseItem>
+                        </Exercise>
+                    ))}
+            </Exercises>
 
-            {/*    <Exercise>*/}
-            {/*        <ExerciseItem>{exercise.name}</ExerciseItem>*/}
-            {/*        <ExerciseItem>{exercise.series}</ExerciseItem>*/}
-            {/*        <ExerciseItem>{exercise.reps}</ExerciseItem>*/}
-            {/*    </Exercise>*/}
-
-            {/*))}*/}
         </TrainingWrapper>
     )
 };
