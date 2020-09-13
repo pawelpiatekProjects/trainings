@@ -24,8 +24,9 @@ const PlanWrapper = styled.div`
   }
   
   &:hover #hover-tile{
-    transform: scaleY(1);
+    opacity: 1;
   }
+  
   
   &:hover #hover-tile-content,
    #hover-tile-buttons{
@@ -42,7 +43,6 @@ const PlanImage = styled.div`
    width: 100%;
    height: 20rem;
   position: relative;
-  //background-size: contain;
   
   svg {
     background-size: contain;
@@ -73,8 +73,8 @@ const HoverTile = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  transform: scaleY(0);
-  transition: all .4s;
+  opacity: 0;
+  transition: all .7s;
   transform-origin: bottom;
   
 `;
@@ -137,12 +137,16 @@ const HoverTileButton = styled.button`
     color: ${variables.textColorPrimary};
   }
   
-  &:hover{
+  &:hover,
+  &:focus{
     background: ${variables.grayPrimary};
+    outline: none;
   }
   
   &:hover p,
-  &:hover svg{
+  &:hover svg,
+  &:focus p,
+  &:focus svg{
     color: ${props => props.hoverColor};
   } 
 `;

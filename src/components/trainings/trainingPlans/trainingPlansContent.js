@@ -4,6 +4,7 @@ import SideNav from "../../navigation/sideNav";
 import * as variables from '../../../assets/variables'
 import {Button} from "../../UIComponents/primaryButton";
 import TrainingPlan from "./trainingPlan";
+import AddNewPlan from "./addNewPlan";
 
 
 
@@ -70,7 +71,7 @@ const TrainingPlansContent = () => {
                     <TrainingPlan image='image6'/>
                 </PlansGrid>
             </Content>
-
+            <AddNewPlan/>
         </TrainingPlansWrapper>
     )
 };
