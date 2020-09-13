@@ -1,10 +1,12 @@
 import React from "react";
 import styled from 'styled-components';
 import * as variables from '../../../assets/variables';
-import dumbel from "../../../assets/images/svg/dumbel.svg";
-import {ReactComponent as Back1} from "../../../assets/images/svg/grafika3.svg";
+import dumbbell from "../../../assets/images/svg/dumbel.svg";
+import chart2 from '../../../assets/images/svg/grafika5.svg';
 import chart from "../../../assets/images/svg/chart.svg";
-
+import chart3 from '../../../assets/images/svg/grafika7.svg';
+import kettlebell from '../../../assets/images/svg/grafika8.svg';
+import heart from '../../../assets/images/svg/grafika8.1.svg';
 
 
 const PlanWrapper = styled.div`
@@ -56,7 +58,23 @@ const TrainingPlan = ({image}) => {
             break;
         }
         case 'image2': {
-            backgroundImage = dumbel;
+            backgroundImage = dumbbell;
+            break;
+        }
+        case 'image3': {
+            backgroundImage = chart2;
+            break;
+        }
+        case 'image4': {
+            backgroundImage = chart3;
+            break;
+        }
+        case 'image5': {
+            backgroundImage = kettlebell;
+            break;
+        }
+        case 'image6': {
+            backgroundImage = heart;
             break;
         }
     }

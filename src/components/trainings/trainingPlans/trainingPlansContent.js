@@ -64,12 +64,10 @@ const TrainingPlansContent = () => {
                 <PlansGrid>
                     <TrainingPlan image='image1'/>
                     <TrainingPlan image='image2'/>
-
-                    {/*<TrainingPlan image={backgroundImage2}/>*/}
-                    {/*<TrainingPlan image={backgroundImage3}/>*/}
-                    {/*<TrainingPlan image={backgroundImage4}/>*/}
-                    {/*<TrainingPlan image={backgroundImage5}/>*/}
-                    {/*<TrainingPlan image={backgroundImage6}/>*/}
+                    <TrainingPlan image='image3'/>
+                    <TrainingPlan image='image4'/>
+                    <TrainingPlan image='image5'/>
+                    <TrainingPlan image='image6'/>
                 </PlansGrid>
             </Content>
 
