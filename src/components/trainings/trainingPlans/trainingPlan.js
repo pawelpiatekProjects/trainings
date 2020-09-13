@@ -183,6 +183,7 @@ const TrainingPlan = ({image}) => {
         }
     }
 
+
     return (
         <PlanWrapper>
             <PlanImage image={backgroundImage}/>

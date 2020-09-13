@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from 'styled-components';
 import SideNav from "../../navigation/sideNav";
 import * as variables from '../../../assets/variables'
 import {Button} from "../../UIComponents/primaryButton";
 import TrainingPlan from "./trainingPlan";
 import AddNewPlan from "./addNewPlan";
+import Backdrop from "../../UIComponents/backdrop";
 
 
 
@@ -53,13 +54,15 @@ const PlansGrid = styled.div`
 
 
 const TrainingPlansContent = () => {
+    const [isBackdropOpen, setBackDropOpen] = useState(false);
+
     return (
         <TrainingPlansWrapper>
             <SideNav/>
             <Content>
                 <TrainingPlansHeader>
                     <h1>Training Plans</h1>
-                    <Button>New</Button>
+                    <Button onClick={()=> setBackDropOpen(!isBackdropOpen)}>New</Button>
                 </TrainingPlansHeader>
 
                 <PlansGrid>
@@ -71,7 +74,8 @@ const TrainingPlansContent = () => {
                     <TrainingPlan image='image6'/>
                 </PlansGrid>
             </Content>
-            <AddNewPlan/>
+            <AddNewPlan isOpen={isBackdropOpen} setBackDropOpen={setBackDropOpen}/>
+            <Backdrop isOpen={isBackdropOpen} close={setBackDropOpen}/>
         </TrainingPlansWrapper>
     )
 };
