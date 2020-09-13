@@ -98,10 +98,14 @@ const FieldWrapper = styled.div`
 const ImageField = styled.div`
     padding: 0 1rem 1rem 0;
     width: 80%;
-    margin: 0 auto 1rem auto;
+    margin: 0 auto 4rem auto;
    background: transparent;
   border-bottom: ${props => props.error && props.touched ? `2px solid ${variables.errorRed}` : `2px solid ${variables.textColorPrimary}`};
   position: relative;
+  
+  &:focus{
+    color: ${variables.yellowPrimary};
+  }
   
 `;
 
@@ -183,19 +187,7 @@ const Error = styled.p`
   //padding: .5rem;
 `;
 
-const SignInSchema = Yup.object().shape({
-    name: Yup.string()
-        .required('Name is required'),
-    days: Yup .number()
-        .required('Number of days is required'),
-    priority: Yup.string()
-        .required('Priority is required'),
-    image: Yup.string()
-        .required('Please select image'),
-    description: Yup.string()
-        .required('Description is required'),
 
-});
 
 const Button = styled.button`
   background: ${variables.light};
@@ -212,6 +204,17 @@ const Button = styled.button`
     color: ${variables.light};
   }
 `;
+
+const SignInSchema = Yup.object().shape({
+    name: Yup.string()
+        .required('Name is required'),
+    days: Yup .number()
+        .required('Number of days is required'),
+    priority: Yup.string(),
+    description: Yup.string()
+
+
+});
 
 const AddNewPlan = ({isOpen}) => {
 
@@ -234,12 +237,16 @@ const AddNewPlan = ({isOpen}) => {
                         name: '',
                         days: '',
                         priority: '',
-                        image: '',
                         description: ''
                     }}
                     validationSchema={SignInSchema}
                     onSubmit={(values) => {
-                        console.log(values)
+
+                        const data = {
+                            ...values,
+                            image: image
+                        }
+                        console.log(data)
                     }}>
                     {({errors, touched, }) => (
                         <Form>
@@ -253,7 +260,7 @@ const AddNewPlan = ({isOpen}) => {
                             ) : <Error></Error>}
                             <FieldWrapper error={errors.days} touched={touched.days}>
 
-                                <Field name='days' placeholder='Days'/>
+                                <Field name='days' placeholder='Days' type='number'/>
                             </FieldWrapper>
                             {errors.days && touched.days ? (
                                 <Error>{errors.days}</Error>
@@ -265,7 +272,7 @@ const AddNewPlan = ({isOpen}) => {
                             {errors.priority && touched.priority ? (
                                 <Error>{errors.priority}</Error>
                             ) : <Error></Error>}
-                            <ImageField error={errors.image} touched={touched.image} onClick={() => toggleImageSelect()}>
+                            <ImageField  onClick={() => toggleImageSelect()}>
                                 <ImagePicker>
                                     <p>{image}</p>
                                     <FontAwesomeIcon icon={faCaretDown}/>
@@ -280,9 +287,9 @@ const AddNewPlan = ({isOpen}) => {
                                     ))}
                                 </ImageSelect>
                             </ImageField>
-                            {errors.image && touched.image ? (
-                                <Error>{errors.image}</Error>
-                            ) : <Error></Error>}
+                            {/*{errors.image && touched.image ? (*/}
+                            {/*    <Error>{errors.image}</Error>*/}
+                            {/*) : <Error></Error>}*/}
                             <TextArea error={errors.description} touched={touched.description}>
                                 <Field name='description' placeholder='Description' component="textarea" rows="6"/>
                             </TextArea>
@@ -290,7 +297,7 @@ const AddNewPlan = ({isOpen}) => {
                                 <Error>{errors.description}</Error>
                             ) : <Error></Error>}
 
-                            <Button>Create</Button>
+                            <Button type='submit'>Create</Button>
                         </Form>
                     )}
                 </Formik>
