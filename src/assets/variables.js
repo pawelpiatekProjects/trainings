@@ -8,7 +8,7 @@ export const grayPrimary = '#eee';
 export const graySecondary = '#efefef';
 export const thirdGray = '#c3c3c3'
 export const errorRed = '#f85a40';
-
+export const primaryBlue = '#0cb9c1';
 
 // box shadow
 

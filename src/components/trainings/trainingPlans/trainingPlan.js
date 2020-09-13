@@ -7,6 +7,8 @@ import chart from "../../../assets/images/svg/chart.svg";
 import chart3 from '../../../assets/images/svg/grafika7.svg';
 import kettlebell from '../../../assets/images/svg/grafika8.svg';
 import heart from '../../../assets/images/svg/grafika8.1.svg';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTrashAlt, faEdit, faArrowRight} from "@fortawesome/free-solid-svg-icons";
 
 
 const PlanWrapper = styled.div`
@@ -14,6 +16,22 @@ const PlanWrapper = styled.div`
   height: 35rem;
   background: ${variables.light};
   box-shadow: ${variables.dashboardItemBoxShadow};
+  transition: all .3s;
+  position: relative;
+  
+  &:hover{
+    transform: scale(1.1);
+  }
+  
+  &:hover #hover-tile{
+    transform: scaleY(1);
+  }
+  
+  &:hover #hover-tile-content,
+   #hover-tile-buttons{
+    display: inline-block;
+  }
+  
 `;
 
 const PlanImage = styled.div`
@@ -47,6 +65,88 @@ const PlanContentText = styled.p`
   text-align: left;
   color: ${variables.thirdGray};
 `;
+
+const HoverTile = styled.div`
+  background: linear-gradient(to left top,  ${variables.grayPrimary}, ${variables.yellowPrimary});
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scaleY(0);
+  transition: all .4s;
+  transform-origin: bottom;
+  
+`;
+
+const HoverTileContent = styled.div`
+padding: 2rem;
+  transition: all .7s;
+  display: none;
+  width: 100%;
+`;
+
+const HoverTileHeader = styled.h1`
+  
+  width: 100%;
+  text-align: left;
+  color: ${variables.light};
+`;
+
+const HoverTileText = styled.p`
+  
+  width: 100%;
+  text-align: left;
+   color: ${variables.textColorPrimary};
+  span{
+    font-weight: 700;
+  }
+`;
+
+const HoverTileButtons = styled.div`
+  box-shadow: 0px -5px 9px -10px rgba(0,0,0,0.75);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: ${variables.light};
+  transition: all .7s;
+`;
+
+
+
+const HoverTileButton = styled.button`
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0 3rem;
+  border-bottom: 1px solid ${variables.thirdGray};
+  transition: all .3s;
+  
+  p, svg{
+    display:  inline-block;
+    transition: all .3s;
+  }
+  
+  p{
+    margin-right: 1rem;
+  }
+  
+  svg{
+    font-size: 1.8rem;
+    color: ${variables.textColorPrimary};
+  }
+  
+  &:hover{
+    background: ${variables.grayPrimary};
+  }
+  
+  &:hover p,
+  &:hover svg{
+    color: ${props => props.hoverColor};
+  } 
+`;
+
 
 const TrainingPlan = ({image}) => {
 
@@ -86,6 +186,29 @@ const TrainingPlan = ({image}) => {
                 <PlanContentHeader>FBW1</PlanContentHeader>
                 <PlanContentText>Created 25-02-2020</PlanContentText>
             </PlanContent>
+            <HoverTile id='hover-tile'>
+                <HoverTileContent id="hover-tile-content">
+                    <HoverTileHeader>FBW1</HoverTileHeader>
+                    <HoverTileText>Created: <span>25-02-2020</span></HoverTileText>
+                    <HoverTileText>Created by: <span>User</span></HoverTileText>
+
+                </HoverTileContent>
+                <HoverTileButtons id="hover-tile-buttons">
+                    <HoverTileButton hoverColor={variables.yellowPrimary}>
+                        <p>Open</p>
+                        <FontAwesomeIcon icon={faArrowRight}/>
+                    </HoverTileButton>
+                    <HoverTileButton hoverColor={variables.primaryBlue}>
+                        <p>Edit</p>
+                        <FontAwesomeIcon icon={faEdit}/>
+                    </HoverTileButton>
+                    <HoverTileButton hoverColor={variables.errorRed}>
+                        <p>Delete</p>
+                        <FontAwesomeIcon icon={faTrashAlt}/>
+                    </HoverTileButton>
+                </HoverTileButtons>
+
+            </HoverTile>
         </PlanWrapper>
     )
 };
