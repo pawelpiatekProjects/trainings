@@ -1,14 +1,46 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 import * as variables from '../../../assets/variables';
 import {Field, Form, Formik} from "formik";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faLock, faUser} from "@fortawesome/free-solid-svg-icons";
-import {Link} from "react-router-dom";
-import YellowBorderButton from "../../UIComponents/yellowBorderButton";
 import * as Yup from "yup";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
+import dumbbell from '../../../assets/images/svg/dumbel.svg';
+import chart2 from '../../../assets/images/svg/grafika5.svg';
+import chart from "../../../assets/images/svg/chart.svg";
+import chart3 from '../../../assets/images/svg/grafika7.svg';
+import kettlebell from '../../../assets/images/svg/grafika8.svg';
+import heart from '../../../assets/images/svg/grafika8.1.svg';
 
+// const images = [dumbbell, chart, chart2, chart3, kettlebell, heart];
+const images = [
+    {
+        image: dumbbell,
+        title: 'Dumbbell'
+    },
+    {
+        image: chart,
+        title: 'Blue Chart'
+    },
+    {
+        image: chart2,
+        title: 'Green Chart'
+    },
+    {
+        image: chart3,
+        title: 'Red Chart'
+    },
+    {
+        image: kettlebell,
+        title: 'Kettlebell'
+    },
+    {
+        image: heart,
+        title: 'Heart'
+    }
+]
 
+//todo: add reseting form after closing backdrop
 
 const FormWrapper = styled.div`
   position: fixed;
@@ -50,6 +82,7 @@ const FieldWrapper = styled.div`
     width: 100%;
     border: none;
     background: inherit;
+    font-size: 1.4rem;
     
     &::placeholder {
     color: ${props => props.error && props.touched ? `${variables.errorRed}` : 'black'};
@@ -62,12 +95,76 @@ const FieldWrapper = styled.div`
   }
 `;
 
+const ImageField = styled.div`
+    padding: 0 1rem 1rem 0;
+    width: 80%;
+    margin: 0 auto 1rem auto;
+   background: transparent;
+  border-bottom: ${props => props.error && props.touched ? `2px solid ${variables.errorRed}` : `2px solid ${variables.textColorPrimary}`};
+  position: relative;
+  
+`;
+
+const ImagePicker = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  p{
+    font-size: 1.4rem;
+    padding: 0;
+    margin: 0;
+  }
+  svg{
+    font-size: 1.6rem;
+  }
+  
+  &:hover{
+    cursor: pointer;
+  }
+`;
+
+const ImageSelect = styled.div`
+box-shadow: ${variables.dashboardItemBoxShadow};
+  width: 100%;
+  height: 15rem;
+  overflow-y: scroll;
+
+  position: absolute;
+  bottom: -15rem;
+  transform-origin: bottom;
+  left: 0;
+  z-index: ${variables.formItemZIndex};
+  background: ${variables.light};
+  
+  display: ${props => props.isOpen ? 'block': 'none'};
+`;
+
+const ImageOption = styled.div`
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background: ${variables.grayPrimary};
+  transition: all .3s;
+  
+  &:hover {
+    background: ${variables.yellowPrimary};
+    color: ${variables.light};
+    cursor: pointer;
+  }
+`;
+
+const Image = styled.img`
+  height: 4rem;
+  margin-right: 1rem;
+`;
+
 const TextArea = styled.div`
   textarea{
     width: 80%;
     margin: 0 auto;
     border:  ${props => props.error && props.touched ? `2px solid ${variables.errorRed}` : `2px solid ${variables.textColorPrimary}`};
     padding: 1rem ;
+    font-size: 1.6rem;
     
     &::placeholder {
     color: ${props => props.error && props.touched ? `${variables.errorRed}` : 'black'};
@@ -107,7 +204,7 @@ const Button = styled.button`
   font-size: 1.6rem;
   position: absolute;
   left: 10rem;
-  bottom: 8rem;
+  bottom: 4rem;
   transition: all .3s;
   
   &:hover{
@@ -118,7 +215,17 @@ const Button = styled.button`
 
 const AddNewPlan = ({isOpen}) => {
 
+    const [imageSelectOpen, setImageSelectOpen] = useState(false);
+    const [image, setImage] = useState('Dumbbell');
 
+    const toggleImageSelect = () => {
+        setImageSelectOpen(!imageSelectOpen);
+    }
+
+    const onSelectImage = (item) => {
+        setImage(item);
+        console.log(image);
+    }
     return(
             <FormWrapper isOpen={isOpen}>
                 <FormHeader>Create New Plan</FormHeader>
@@ -158,10 +265,21 @@ const AddNewPlan = ({isOpen}) => {
                             {errors.priority && touched.priority ? (
                                 <Error>{errors.priority}</Error>
                             ) : <Error></Error>}
-                            <FieldWrapper error={errors.image} touched={touched.image}>
+                            <ImageField error={errors.image} touched={touched.image} onClick={() => toggleImageSelect()}>
+                                <ImagePicker>
+                                    <p>{image}</p>
+                                    <FontAwesomeIcon icon={faCaretDown}/>
+                                </ImagePicker>
 
-                                <Field name='image' placeholder='Image'/>
-                            </FieldWrapper>
+                                <ImageSelect isOpen={imageSelectOpen}>
+                                    {images.map(({image, title}) => (
+                                        <ImageOption onClick={()=> onSelectImage(title)}>
+                                            <Image src={image}/>
+                                            <p>{title}</p>
+                                        </ImageOption>
+                                    ))}
+                                </ImageSelect>
+                            </ImageField>
                             {errors.image && touched.image ? (
                                 <Error>{errors.image}</Error>
                             ) : <Error></Error>}

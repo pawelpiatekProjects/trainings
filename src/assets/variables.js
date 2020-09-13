@@ -24,6 +24,8 @@ export const backdropZIndex = 1000;
 
 export const formZIndex = 1100;
 
+export const formItemZIndex = 1200;
+
 // sizes
 
 export const topNavDashboardHeight = `7rem`;

@@ -49,6 +49,10 @@ const GlobalStyle = createGlobalStyle`
     
 
   }
+  
+  input{
+    font-family: 'Montserrat';
+  }
 
   button {
     padding: 0;
