@@ -9,6 +9,7 @@ import kettlebell from '../../../assets/images/svg/grafika8.svg';
 import heart from '../../../assets/images/svg/grafika8.1.svg';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrashAlt, faEdit, faArrowRight} from "@fortawesome/free-solid-svg-icons";
+import {Link} from "react-router-dom";
 
 
 const PlanWrapper = styled.div`
@@ -123,12 +124,20 @@ const HoverTileButton = styled.button`
   border-bottom: 1px solid ${variables.thirdGray};
   transition: all .3s;
   
-  p, svg{
+  p, svg, a{
     display:  inline-block;
     transition: all .3s;
   }
   
   p{
+    margin-right: 1rem;
+  }
+  
+  a{
+    color: ${variables.textColorPrimary};
+    text-decoration: none;
+    font-size: 1.6rem;
+    padding: 1.5rem;
     margin-right: 1rem;
   }
   
@@ -145,7 +154,9 @@ const HoverTileButton = styled.button`
   
   &:hover p,
   &:hover svg,
+  &:hover a,
   &:focus p,
+  &:focus a,
   &:focus svg{
     color: ${props => props.hoverColor};
   } 
@@ -200,11 +211,11 @@ const TrainingPlan = ({image}) => {
                 </HoverTileContent>
                 <HoverTileButtons id="hover-tile-buttons">
                     <HoverTileButton hoverColor={variables.yellowPrimary}>
-                        <p>Open</p>
+                        <Link to='/trainings/plans/1'>Open</Link>
                         <FontAwesomeIcon icon={faArrowRight}/>
                     </HoverTileButton>
                     <HoverTileButton hoverColor={variables.primaryBlue}>
-                        <p>Edit</p>
+                        <Link to='/trainings/plans/1/edit'>Edit</Link>
                         <FontAwesomeIcon icon={faEdit}/>
                     </HoverTileButton>
                     <HoverTileButton hoverColor={variables.errorRed}>

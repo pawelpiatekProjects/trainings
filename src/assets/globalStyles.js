@@ -46,7 +46,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     //padding: 8rem 6.5rem;
     font-family: 'Montserrat';
-    
+    background: ${variables.grayPrimary};
 
   }
   

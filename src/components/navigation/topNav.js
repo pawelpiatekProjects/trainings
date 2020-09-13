@@ -11,6 +11,7 @@ const DashboardTopNavWrapper = styled.nav`
 `;
 
 const Navigation = styled.ul`
+  height: 8rem;
   background: ${variables.grayPrimary};
   position: fixed;
   width: 100%;
