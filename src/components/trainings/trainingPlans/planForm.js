@@ -216,7 +216,9 @@ const SignInSchema = Yup.object().shape({
 
 });
 
-const AddNewPlan = ({isOpen}) => {
+// Adding and Editing plan
+
+const PlanForm = ({isOpen, mode}) => {
 
     const [imageSelectOpen, setImageSelectOpen] = useState(false);
     const [image, setImage] = useState('Dumbbell');
@@ -231,7 +233,9 @@ const AddNewPlan = ({isOpen}) => {
     }
     return(
             <FormWrapper isOpen={isOpen}>
-                <FormHeader>Create New Plan</FormHeader>
+                <FormHeader>
+                    {mode === 'add' ? 'Create New Plan' : 'Edit Plan'}
+                </FormHeader>
                 <Formik
                     initialValues={{
                         name: '',
@@ -305,4 +309,4 @@ const AddNewPlan = ({isOpen}) => {
     )
 };
 
-export default AddNewPlan;
+export default PlanForm;

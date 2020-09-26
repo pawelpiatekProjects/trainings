@@ -4,8 +4,9 @@ import * as variables from '../../../../assets/variables';
 import SideNav from "../../../navigation/sideNav";
 import heroImg from '../../../../assets/images/svg/grafika9.svg';
 import Backdrop from "../../../UIComponents/backdrop";
-import AddNewDay from "./addNewDay";
+import AddNewDay from "./forms/addNewDay";
 import TrainingDays from "./trainingDays/trainingDays";
+import FormWrapper from "./forms/formWrapper";
 
 const TrainingPlanWrapper = styled.div`
   height: 100%;
@@ -45,14 +46,14 @@ const TrainingHeading = styled.div`
 const TrainingHeader = styled.h1`
   font-weight: 400;
   font-size: 3rem;
-  width: 75%;
+  width: 65%;
   text-align: left;
 `;
 
 const HeadingButtons = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 25%;
+  width: 35%;
 `;
 
 const Button = styled.button`
@@ -114,10 +115,22 @@ const NoDaysHeader = styled.h1`
 const TrainingPlanContent = () => {
 
     const [isModalOpen, setModalOpen] = useState(false);
+    const [formContent, setFormContent] = useState(null);
 
-    const onOpenModal = () =>{
+    const addNewDay = () => {
+        setFormContent('newDay');
         setModalOpen(true);
     }
+
+    const editPlan = () => {
+        setFormContent('editPlan');
+        setModalOpen(true);
+    }
+
+    const deletePlan = () => {
+        setModalOpen(true);
+    }
+
     return(
         <TrainingPlanWrapper>
             <SideNav/>
@@ -126,9 +139,10 @@ const TrainingPlanContent = () => {
                 <TrainingHeading>
                     <TrainingHeader>FBW1</TrainingHeader>
                     <HeadingButtons>
-                        <Button onClick={()=> onOpenModal()}>Add Training Day</Button>
+                        <Button onClick={()=> addNewDay()}>Add Training Day</Button>
                         {/*todo: disable this button when there are no training days*/}
-                        <Button>Edit</Button>
+                        <Button onClick={()=> editPlan()}>Edit</Button>
+                        <Button onClick={()=> deletePlan()}>Delete</Button>
                     </HeadingButtons>
                 </TrainingHeading>
                 <InfoRow>
@@ -145,14 +159,14 @@ const TrainingPlanContent = () => {
                         <NoDaysHeader>
                             Your training plan is empty. Add training days
                         </NoDaysHeader>
-                        <Button onClick={()=> onOpenModal()}>Add</Button>
+                        <Button onClick={()=> addNewDay()}>Add</Button>
                     </NoDays>
                     {/*Training days list*/}
                     <TrainingDays/>
                 </DaysRow>
             </Content>
             <Backdrop isOpen={isModalOpen} close={setModalOpen}/>
-            <AddNewDay isOpen={isModalOpen}/>
+            <FormWrapper isOpen={isModalOpen} formContent={formContent}/>
         </TrainingPlanWrapper>
     )
 };

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import * as variables from '../../../../assets/variables';
+import * as variables from '../../../../../assets/variables';
 import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
@@ -12,16 +12,16 @@ import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 //todo: add reseting form after closing backdrop
 
 const FormWrapper = styled.div`
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: ${variables.light};
-  width: 50%;
-  height: 40%;
-  padding: 3rem;
-  display: ${props => props.isOpen ? 'block' : 'none'};
-  z-index: ${variables.formZIndex};
+  // position: fixed;
+  // top: 50%;
+  // left: 50%;
+  // transform: translate(-50%, -50%);
+  // background: ${variables.light};
+  // width: 50%;
+  // height: 40%;
+  // padding: 3rem;
+  // display: ${props => props.isOpen ? 'block' : 'none'};
+  // z-index: ${variables.formZIndex};
 `;
 
 const FormHeader = styled.h1`
@@ -98,11 +98,11 @@ const SignInSchema = Yup.object().shape({
         .required('Name is required'),
 });
 
-const AddNewDay = ({isOpen}) => {
+const AddNewDay = () => {
 
 
     return(
-        <FormWrapper isOpen={isOpen}>
+        <FormWrapper>
             <FormHeader>Create New Training Day</FormHeader>
             <Formik
                 initialValues={{
