@@ -5,6 +5,7 @@ import SideNav from "../../../navigation/sideNav";
 import heroImg from '../../../../assets/images/svg/grafika9.svg';
 import Backdrop from "../../../UIComponents/backdrop";
 import AddNewDay from "./addNewDay";
+import TrainingDays from "./trainingDays/trainingDays";
 
 const TrainingPlanWrapper = styled.div`
   height: 100%;
@@ -44,14 +45,14 @@ const TrainingHeading = styled.div`
 const TrainingHeader = styled.h1`
   font-weight: 400;
   font-size: 3rem;
-  width: 80%;
+  width: 75%;
   text-align: left;
 `;
 
 const HeadingButtons = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 20%;
+  width: 25%;
 `;
 
 const Button = styled.button`
@@ -88,17 +89,17 @@ const DescriptionRow = styled.p`
   color: ${variables.textColorSecondary};
 `;
 
-const ExercisesRow = styled.div`
+const DaysRow = styled.div`
   padding: 3rem;
   
 `;
 
-const NoExercises = styled.h1`
+const NoDays = styled.h1`
   border: 1px dashed ${variables.textColorSecondary};
   padding: 2rem;
 `;
 
-const NoExercisesHeader = styled.h1`
+const NoDaysHeader = styled.h1`
   font-size: 2rem;
   font-weight: 400;
   width: 100%;
@@ -106,6 +107,7 @@ const NoExercisesHeader = styled.h1`
   color: ${variables.textColorSecondary};
   margin-bottom: 3rem;
 `;
+
 
 
 
@@ -124,7 +126,8 @@ const TrainingPlanContent = () => {
                 <TrainingHeading>
                     <TrainingHeader>FBW1</TrainingHeader>
                     <HeadingButtons>
-                        <Button>Add Exercise</Button>
+                        <Button onClick={()=> onOpenModal()}>Add Training Day</Button>
+                        {/*todo: disable this button when there are no training days*/}
                         <Button>Edit</Button>
                     </HeadingButtons>
                 </TrainingHeading>
@@ -136,14 +139,17 @@ const TrainingPlanContent = () => {
                 <DescriptionRow>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quam nisi, porttitor vitae fringilla ac, feugiat ut purus. Nunc eu condimentum sapien, eget ornare nisi. Sed pulvinar rutrum eros, ultrices hendrerit dui sollicitudin
                 </DescriptionRow>
-                <ExercisesRow>
-                    <NoExercises>
-                        <NoExercisesHeader>
+                <DaysRow>
+                    {/*Section which is displaying when there are no training days*/}
+                    <NoDays>
+                        <NoDaysHeader>
                             Your training plan is empty. Add training days
-                        </NoExercisesHeader>
+                        </NoDaysHeader>
                         <Button onClick={()=> onOpenModal()}>Add</Button>
-                    </NoExercises>
-                </ExercisesRow>
+                    </NoDays>
+                    {/*Training days list*/}
+                    <TrainingDays/>
+                </DaysRow>
             </Content>
             <Backdrop isOpen={isModalOpen} close={setModalOpen}/>
             <AddNewDay isOpen={isModalOpen}/>

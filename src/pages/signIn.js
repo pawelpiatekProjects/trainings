@@ -26,7 +26,7 @@ const ContentLeftWrapper = styled.div`
 const ContentRightWrapper = styled.div`
   position: relative;
   width: 60%;
-  
+  background: ${variables.light};
 `;
 
 const SignIn = () => {
