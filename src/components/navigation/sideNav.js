@@ -8,20 +8,15 @@ import * as variables from '../../assets/variables';
 
 const SideNavWrapper = styled.div`
   height: 100vh;
-  width: 10rem;
+  width: 8rem;
   position: fixed;
   top: 0;
   left: 0rem;
-  padding: 5rem;
+  padding: 4rem;
   background: ${variables.yellowPrimary};
   z-index: ${variables.navigationZIndex};
   box-shadow: ${variables.dashboardItemBoxShadow};
   transition: all .3s ;
-  &:hover{
-    cursor: pointer;
-    width: 25rem;
-    //transform: scaleX(2);
-  }
   
   &:hover p {
    transform: scaleX(1);
@@ -34,21 +29,34 @@ const SideNavWrapper = styled.div`
 
 const Navigation = styled.ul`
 margin: auto;
-  height: 50%;
+  height: 45%;
   list-style: none;
   position: absolute;
   top: 50%;
   left: 0;
   transform: translate(0, -50%);
   width: 100%;
- 
+ margin: 0 auto;
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ align-items: center;
 `;
 
 const NavItem = styled.li`
- padding: 0 3rem;
-  width: 100%;
-  margin: 0 auto;
+ //padding: 0 3rem;
+  
+  width: 5rem;
+  height: 5rem;
+  position: relative;
+  border-radius: 5px;
+  
+  justify-content: center;
   a{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
     text-decoration: none;
     color: ${variables.light};
     
@@ -59,46 +67,58 @@ const NavItem = styled.li`
   }
   transition: all .5s;
   &:hover{
-    background: ${variables.light};
-    
-    svg, p{
+    background: ${variables.grayPrimary};
+    cursor: pointer;
+    transform: rotate(90deg);
+    svg{
       color: ${variables.textColorPrimary};
+      transform: rotate(-90deg);
+      transform-origin: left;
     }
     
+    &::after{
+    transform: rotateY(-90deg);
+    //transform-origin: left;
+    }
+    
+  }
+  
+  &::after{
+    position: absolute;
+    content: '';
+    height: inherit;
+    width: 10rem;
+    top: 0;
+    left: 6.5rem;
+    display: inline-block;
+    background: ${variables.light};
   }
 `;
 
 const NavItemContent = styled.div`
-  display: flex;
-  align-items: center;
   height: 7rem;
   width: 100%;
+  position: relative;
 
   svg{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
     margin-right: 1rem;
-    font-size: 2.5rem;
+    font-size: 2rem;
     width: 10rem;
-  }
-  p{
-    width: 20rem;
-    opacity: 0;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: all .5s;
-    text-align: left;
   }
 `;
 
 const SideNav = () => {
     return (
         <SideNavWrapper>
-
                 <Navigation>
                     <NavItem>
                         <NavLink to='/trainings/list'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faList}/>
-                                <p>Trainings List</p>
                             </NavItemContent>
                         </NavLink>
                     </NavItem>
@@ -106,7 +126,6 @@ const SideNav = () => {
                         <NavLink to='/trainings/plans'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faDumbbell}/>
-                                <p>Training Plans</p>
                             </NavItemContent>
                         </NavLink>
                     </NavItem>
@@ -114,7 +133,6 @@ const SideNav = () => {
                         <NavLink to='/settings'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faCogs}/>
-                                <p>Settings</p>
                             </NavItemContent>
                         </NavLink>
                     </NavItem>
@@ -122,7 +140,6 @@ const SideNav = () => {
                         <NavLink to='/account'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faUser}/>
-                                <p>Account</p>
                             </NavItemContent>
                         </NavLink>
                     </NavItem>
@@ -130,7 +147,6 @@ const SideNav = () => {
                         <NavLink to='/logout'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faSignOutAlt}/>
-                                <p>Sign Out</p>
                             </NavItemContent>
                         </NavLink>
                     </NavItem>

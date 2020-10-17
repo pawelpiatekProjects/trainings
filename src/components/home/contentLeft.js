@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import YellowBorderButton from "../UIComponents/yellowBorderButton";
+import * as variables from '../../assets/variables';
 
 const ContentLeftWrapper = styled.div`
   position: relative;
@@ -20,11 +21,13 @@ const ContentHeader = styled.h1`
 width: 100%;
 text-align: left;
 font-weight: 400;
+font-size: 2.5rem;
 `;
 
 const ContentText = styled.p`
 width: 100%;
 text-align: left;
+font-size: ${variables.textSmall};
 `;
 
 const ButtonWrapper = styled.div`

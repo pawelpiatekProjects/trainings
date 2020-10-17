@@ -10,8 +10,7 @@ import YellowBorderButton from "../UIComponents/yellowBorderButton";
 
 // todo: consider exporting ContentRighWrapper
 const ContentRightWrapper = styled.div`
-  padding: 5rem;
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   position: absolute;
   top: 50%;

@@ -5,61 +5,49 @@ import {Formik, Field, Form} from "formik";
 import * as Yup from 'yup';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faUser, faLock} from "@fortawesome/free-solid-svg-icons";
-import YellowBorderButton from "../UIComponents/yellowBorderButton";
-import {yellowPrimary} from "../../assets/variables";
+
 import {Link, useHistory} from "react-router-dom";
 
+
 const ContentRightWrapper = styled.div`
-  padding: 5rem;
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  
-  &::before {
-    position: absolute;
-    content: '';
-    display: inline-block;
-    top: -1rem;
-    left: -1rem;
-    width: 15rem;
-    height: 15rem;
-    border-left: 6px solid ${variables.yellowPrimary};
-    border-top: 6px solid ${variables.yellowPrimary};
-  }
-  
-  &::after {
-  position: absolute;
-    content: '';
-    display: inline-block;
-    bottom: -3rem;
-    right: 1rem;
-    width: 15rem;
-    height: 15rem;
-    border-right: 6px solid ${variables.yellowPrimary};
-    border-bottom: 6px solid ${variables.yellowPrimary};
-  }
+  z-index: 10;
+
 `;
 
 const Header = styled.h1`
-  font-size: 4rem;
+  font-size: ${variables.header1};
   font-weight: 400;
-  margin-bottom: 8rem;
+  margin: 0 auto 4rem auto;
+  text-align: left;
+  width: 80%;
+`;
+
+const FieldLabel = styled.p`
+  width: 80%;
+  margin: 0 auto 1rem auto;
+  text-align: left;
+  font-size: ${variables.textSmall};
 `;
 
 const FieldWrapper = styled.div`
   width: 80%;
   margin: 0 auto;
-   background: ${variables.grayPrimary};
+   //background: ${variables.grayPrimary};
+   border: 2px solid ${variables.grayPrimary};
+   border-radius: .5rem;
    display: flex;
    padding: 1.5rem;
    //border-bottom: 2px solid ${variables.errorRed};
-   border-bottom: ${props => props.error && props.touched ? `2px solid ${variables.errorRed}` : 'none'};
+   border-bottom: ${props => props.error && props.touched ? `3px solid ${variables.errorRed}` : `2px solid ${variables.grayPrimary}`};
    
    svg{
-    font-size: 1.6rem;
+    font-size: ${variables.textMedium};
     color: ${variables.yellowPrimary};
     margin-right: 1rem;
    }
@@ -68,9 +56,10 @@ const FieldWrapper = styled.div`
     width: 100%;
     border: none;
     background: inherit;
+    font-size: ${variables.textSmall};
     
     &::placeholder {
-    color: ${props => props.error && props.touched ? `${variables.errorRed}` : 'black'};
+    color: ${props => props.error && props.touched ? `${variables.errorRed}` : `${variables.thirdGray}`};
     }
 
     &:focus {
@@ -81,7 +70,7 @@ const FieldWrapper = styled.div`
 `;
 
 const Error = styled.p`
-  font-size: 1.4rem;
+  font-size: ${variables.textSmall};
   color: ${variables.errorRed};
   width: 80%;
   margin: .5rem auto 1rem auto;
@@ -90,39 +79,48 @@ const Error = styled.p`
   //padding: .5rem;
 `;
 
-const ButtonsRow = styled.div`
-width: 80%;
-margin: 2rem auto 3rem auto;
-display: flex;
-justify-content: space-between;
 
-  a {
-  color: ${variables.textColorPrimary};
-  text-decoration: none;
-  font-size: 1.4rem;
-  background: transparent;
-  border: 1px solid transparent;
-  margin: 0 4rem;
-  transition: all .3s;
-  //border-color: ${variables.yellowPrimary};
-  padding: .5rem 1rem .5rem 0;
-  
-  
-  &:hover {
-    color: ${variables.yellowPrimary};
-    border-bottom: 2px solid ${yellowPrimary};
-  }
-  }
-`;
 
 const SubmitButtonWrapper = styled.div`
-width: 80%;
-margin: 5rem auto 0 auto;
-text-align: left;
+    width: 80%;
+    margin: 5rem auto 0 auto;
+    text-align: left;
+    
+    button {
+        display: inline-block;
+        width: 100%;
+        padding: 1.25rem;
+        background: ${variables.yellowPrimary};
+        color: ${variables.light};
+        font-size: ${variables.textMedium};
+        border: none;
+        border-radius: .5rem;
+        
+        transition: background-color .3s;
+        transition: transform .2s;
+        &:hover {
+          background: ${variables.yellowPrimaryDarken};
+          transform: scale(1.01);
+        }
+        &:focus {
+          transform: scale(1);
+          outline: none;
+        }
+    }
+`;
+const SignUpSection = styled.p`
 
-button {
-display: inline-block;
-}
+  span {
+    margin-left: .5rem;
+    position: relative;
+    a {
+      text-decoration: none;
+      color: ${variables.yellowPrimary};
+      transition: all .1s;
+      
+    }
+    
+  }
 `;
 
 const SignInSchema = Yup.object().shape({
@@ -136,6 +134,18 @@ const SignInSchema = Yup.object().shape({
         .max(20, 'Too Long')
         .required('Password is required'),
 });
+
+const ForgotPasswordSection = styled.div`
+  width: 80%;
+  margin: 2rem auto;
+  
+  a{
+    text-align: center;
+    text-decoration: none;
+    color: ${variables.yellowPrimary};
+    font-size: ${variables.textMedium}
+  }
+`;
 
 const ContentRightSignIn = (props) => {
 
@@ -157,30 +167,34 @@ const ContentRightSignIn = (props) => {
                 }}>
                 {({errors, touched, }) => (
                     <Form>
-
+                        <FieldLabel>Email</FieldLabel>
                         <FieldWrapper error={errors.email} touched={touched.email}>
                             <FontAwesomeIcon icon={faUser}/>
-                            <Field name='email' placeholder='Email'/>
+                            <Field name='email' placeholder='name@domain.com'/>
                         </FieldWrapper>
                         {errors.email && touched.email ? (
                             <Error>{errors.email}</Error>
                         ) : <Error></Error>}
+                        <FieldLabel>Password</FieldLabel>
                         <FieldWrapper error={errors.password} touched={touched.password}>
                             <FontAwesomeIcon icon={faLock}/>
-                            <Field name='password' placeholder='Password' type='password'/>
+                            <Field name='password' placeholder='at least 8 characters' type='password'/>
                         </FieldWrapper>
                         {errors.password && touched.password ? (
                             <Error>{errors.password}</Error>
                         ) : <Error></Error>}
 
-                        <ButtonsRow>
-                            <Link to='#'>Forgot password?</Link>
-                            <Link to='/sign-up'>Sign Up</Link>
-                        </ButtonsRow>
                         <SubmitButtonWrapper>
                             {/*todo: add disabling button*/}
-                            <YellowBorderButton text='Sign In' type='submit' />
+                            <button type='submit' >Sign In</button>
+                            {/*<Button1 text='Sign In' icon={faUser}/>*/}
                         </SubmitButtonWrapper>
+                        <SignUpSection>Don't have an account?
+                            <span><Link to='/sign-up'>Sign Up</Link></span>
+                        </SignUpSection>
+                        <ForgotPasswordSection>
+                            <Link to='#'>Forgot password?</Link>
+                        </ForgotPasswordSection>
 
                     </Form>
                 )}

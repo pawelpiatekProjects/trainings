@@ -9,6 +9,7 @@ import ContentRight from "../components/home/contentRight";
 const HomeWrapper = styled.div`
   height: 100vh;
   position: relative;
+  background: ${variables.light};
 `;
 
 const Content = styled.div`
@@ -19,7 +20,6 @@ const Content = styled.div`
 
 const ContentLeftWrapper = styled.div`
   width: 60%;
-  
   height: 100%;
 `;
 
