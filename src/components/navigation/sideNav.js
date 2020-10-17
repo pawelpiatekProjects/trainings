@@ -43,7 +43,10 @@ margin: auto;
  align-items: center;
 `;
 
-const NavItem = styled.li`
+const NavItem = styled.li.attrs(props => ({
+    type: 'text',
+
+}))`
  //padding: 0 3rem;
   
   width: 5rem;
@@ -69,15 +72,16 @@ const NavItem = styled.li`
   &:hover{
     background: ${variables.grayPrimary};
     cursor: pointer;
-    transform: rotate(90deg);
+   
     svg{
       color: ${variables.textColorPrimary};
-      transform: rotate(-90deg);
+      
       transform-origin: left;
     }
     
     &::after{
-    transform: rotateY(-90deg);
+    transform: scaleX(1);
+    opacity: 1;
     //transform-origin: left;
     }
     
@@ -85,13 +89,23 @@ const NavItem = styled.li`
   
   &::after{
     position: absolute;
-    content: '';
+    content: '${props => props.before}';
+    color: ${variables.light};
+    font-size: ${variables.textSmall};
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: inherit;
-    width: 10rem;
+    width: 15rem;
     top: 0;
     left: 6.5rem;
-    display: inline-block;
-    background: ${variables.light};
+    box-shadow: ${variables.dashboardItemBoxShadow};
+    background: ${variables.textColorPrimaryRGBA};
+    transform: scaleX(0);
+    transform-origin: left;
+    opacity: 0;
+    transition: all .3s;
+    
   }
 `;
 
@@ -115,35 +129,35 @@ const SideNav = () => {
     return (
         <SideNavWrapper>
                 <Navigation>
-                    <NavItem>
+                    <NavItem before={'Trainings List'}>
                         <NavLink to='/trainings/list'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faList}/>
                             </NavItemContent>
                         </NavLink>
                     </NavItem>
-                    <NavItem>
+                    <NavItem before={'Training Plans'}>
                         <NavLink to='/trainings/plans'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faDumbbell}/>
                             </NavItemContent>
                         </NavLink>
                     </NavItem>
-                    <NavItem>
+                    <NavItem before={'Settings'}>
                         <NavLink to='/settings'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faCogs}/>
                             </NavItemContent>
                         </NavLink>
                     </NavItem>
-                    <NavItem>
+                    <NavItem before={'Account'}>
                         <NavLink to='/account'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faUser}/>
                             </NavItemContent>
                         </NavLink>
                     </NavItem>
-                    <NavItem>
+                    <NavItem before={'Log Out'}>
                         <NavLink to='/logout'>
                             <NavItemContent>
                                 <FontAwesomeIcon icon={faSignOutAlt}/>

@@ -2,6 +2,7 @@
 // colors
 export const textColorPrimary = '#333';
 export const backdropRGBA = 'rgba(51, 51, 51, .8)';
+export const textColorPrimaryRGBA = 'rgba(51, 51, 51, .6)';
 export const textColorSecondary = '#9F9FA3';
 export const light = '#fff';
 export const yellowPrimary = '#F9C409';
