@@ -147,7 +147,7 @@ const ForgotPasswordSection = styled.div`
   }
 `;
 
-const ContentRightSignIn = (props) => {
+const ContentRightSignIn = ({handleSignIn}) => {
 
     const history = useHistory();
 
@@ -160,10 +160,11 @@ const ContentRightSignIn = (props) => {
                     password: ''
                 }}
                 validationSchema={SignInSchema}
-                onSubmit={(values) => {
+                onSubmit={({email, password}) => {
                     // todo: add external method
-                    history.push('/dashboard');
-                    console.log(values)
+                    // history.push('/dashboard');
+
+                    handleSignIn(email,password);
                 }}>
                 {({errors, touched, }) => (
                     <Form>
