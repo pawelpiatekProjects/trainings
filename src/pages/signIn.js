@@ -5,6 +5,7 @@ import * as variables from "../assets/variables";
 import ContentLeft from '../components/signInUp/contentLeft';
 import ContentRightSignIn from '../components/signInUp/contentRightSignIn';
 import {post} from '../axios';
+import LoaderModal from "../components/UIComponents/loaderModal";
 
 const SignInWrapper = styled.div`
   height: 100vh;
@@ -30,7 +31,7 @@ const ContentRightWrapper = styled.div`
   background: ${variables.light};
 `;
 
-const SignIn = () => {
+const SignIn = ({history}) => {
 
     const [authData, setAuthData] = useState({
         token: null,
@@ -60,28 +61,35 @@ const SignIn = () => {
 
             setUserId(userId);
 
-            setIsLoading(false);
 
+            // setting auth data in local sotrage
             localStorage.setItem('token', token);
             localStorage.setItem('tokenExpirationDate', tokenExpDate.toString());
             localStorage.setItem('userId', userId);
+
+            // redirecting to dashboard when user singed in successfully
+            history.push('/dashboard');
+            setIsLoading(false);
         }
 
     }
 
 
     return (
-        <SignInWrapper>
-            <Navigation isHome={false}/>
-            <Content>
-                <ContentLeftWrapper>
-                    <ContentLeft/>
-                </ContentLeftWrapper>
-                <ContentRightWrapper>
-                    <ContentRightSignIn handleSignIn={onSignIn}/>
-                </ContentRightWrapper>
-            </Content>
-        </SignInWrapper>
+        <>
+            <SignInWrapper>
+                <Navigation isHome={false}/>
+                <Content>
+                    <ContentLeftWrapper>
+                        <ContentLeft/>
+                    </ContentLeftWrapper>
+                    <ContentRightWrapper>
+                        <ContentRightSignIn handleSignIn={onSignIn}/>
+                    </ContentRightWrapper>
+                </Content>
+            </SignInWrapper>
+            <LoaderModal isOpen={isLoading}/>
+        </>
     )
 };
 
