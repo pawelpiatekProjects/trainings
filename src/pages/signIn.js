@@ -45,13 +45,15 @@ const SignIn = ({history}) => {
     const [isError, setIsError] = useState(false);
 
     const onSignIn = async (email, password) => {
+        setIsLoading(true);
 
         try{
-            setIsLoading(true);
             const {data: {token, userId}, status} = await post('/auth/login', {
                 email: email,
                 password: password
             })
+
+
             console.log(token, userId);
             console.log('status', status);
                 const tokenExpDate = new Date(new Date().getTime() + 3600);
@@ -73,8 +75,11 @@ const SignIn = ({history}) => {
 
                 console.log(isLoading)
         } catch (e) {
-            console.error(e)
-                    setIsError(true);
+            setIsError(true);
+            console.log(e)
+
+
+
         } finally {
             setIsLoading(false);
         }
@@ -117,7 +122,10 @@ const SignIn = ({history}) => {
     const errorMessage = {
         header: "User not found",
         content: "Please enter valid data, if haven't got account yet please ",
-        link: 'Sign Up'
+        link: {
+            header: 'sign-up',
+            content: 'Sign Up'
+        }
     }
 
 

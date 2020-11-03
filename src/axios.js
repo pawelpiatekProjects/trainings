@@ -7,6 +7,11 @@ export const post = (route, body) => {
     return axios.post(url, body);
 }
 
+export const get = (route) => {
+    const url = baseUrl + route;
+    return axios.get(url);
+}
+
 /*
 Test user data
     "email": "test@email.com",
