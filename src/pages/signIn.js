@@ -4,7 +4,7 @@ import Navigation from "../components/navigation/navigation";
 import * as variables from "../assets/variables";
 import ContentLeft from '../components/signInUp/contentLeft';
 import ContentRightSignIn from '../components/signInUp/contentRightSignIn';
-import { post } from '../axios';
+import {post} from '../axios';
 
 const SignInWrapper = styled.div`
   height: 100vh;
@@ -42,22 +42,32 @@ const SignIn = () => {
 
     const onSignIn = async (email, password) => {
         setIsLoading(true);
-        const {data: {token, userId}} = await post('/auth/login', {
+        const {data: {token, userId}, status} = await post('/auth/login', {
             email: email,
             password: password
         })
         console.log(token, userId);
-        const tokenExpDate = new Date(new Date().getTime() + 3600);
-        setAuthData({
-            token: token,
-            tokenExpirationDate: tokenExpDate
-        });
+        console.log('status', status);
+        if (status !== 200 && status !== 201) {
+            // Error
+            console.log('Error, error status: ', status);
+        } else {
+            const tokenExpDate = new Date(new Date().getTime() + 3600);
+            setAuthData({
+                token: token,
+                tokenExpirationDate: tokenExpDate
+            });
 
-        setUserId(userId);
+            setUserId(userId);
 
-        setIsLoading(false);
+            setIsLoading(false);
+
+            localStorage.setItem('token', token);
+            localStorage.setItem('tokenExpirationDate', tokenExpDate.toString());
+            localStorage.setItem('userId', userId);
+        }
+
     }
-
 
 
     return (
