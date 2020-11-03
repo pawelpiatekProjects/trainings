@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import * as variables from '../../../assets/variables';
 import {Field, Form, Formik} from "formik";
 import * as Yup from "yup";
-import { post } from '../../../axios';
+import { baseUrl } from '../../../api';
+import axios from 'axios';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown} from "@fortawesome/free-solid-svg-icons";
 import dumbbell from '../../../assets/images/svg/dumbel.svg';
@@ -235,7 +236,7 @@ const PlanForm = ({isOpen, mode}) => {
 
     const createPlan = async(data) => {
         const newPlan = {...data, userId: localStorage.getItem('userId')};
-       return await post('/plans/new', newPlan);
+       return await axios.post(`${baseUrl}/plans/new`, newPlan);
     }
     return(
             <FormWrapper isOpen={isOpen}>

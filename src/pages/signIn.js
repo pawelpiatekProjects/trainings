@@ -4,7 +4,8 @@ import Navigation from "../components/navigation/navigation";
 import * as variables from "../assets/variables";
 import ContentLeft from '../components/signInUp/contentLeft';
 import ContentRightSignIn from '../components/signInUp/contentRightSignIn';
-import {post} from '../axios';
+import axios from 'axios';
+import { baseUrl } from '../api';
 import LoaderModal from "../components/UIComponents/loaderModal";
 import ErrorMessage from "../components/UIComponents/errorMessage";
 
@@ -48,7 +49,7 @@ const SignIn = ({history}) => {
         setIsLoading(true);
 
         try{
-            const {data: {token, userId}, status} = await post('/auth/login', {
+            const {data: {token, userId}, status} = await axios.post(`${baseUrl}/auth/login`, {
                 email: email,
                 password: password
             })

@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react";
 import styled from 'styled-components';
 import SideNav from "../../navigation/sideNav";
 import * as variables from '../../../assets/variables'
+import { baseUrl } from '../../../api';
+import axios from 'axios';
 import {Button} from "../../UIComponents/primaryButton";
 import TrainingPlan from "./trainingPlan";
 import PlanForm from "./planForm";
@@ -55,7 +57,21 @@ const PlansGrid = styled.div`
 
 const TrainingPlansContent = () => {
     const [isBackdropOpen, setBackDropOpen] = useState(false);
+    const [trainingPlans, setTrainingPlans] = useState([]);
 
+    const fetchTrainingPlans = async () => {
+        const token = localStorage.getItem('token')
+        const trainingPlans = await axios.get(`${baseUrl}/plans/all`, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+        console.log(trainingPlans);
+    }
+
+    useEffect( () => {
+         fetchTrainingPlans();
+    },[])
     return (
         <TrainingPlansWrapper>
             <SideNav/>
