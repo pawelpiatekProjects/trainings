@@ -11,15 +11,17 @@ const BackdropWrapper = styled.div`
   left: 0;
   z-index: ${variables.backdropZIndex};
   display: ${props => props.isOpen ? 'block' : 'none'};
+  
+  &:hover {
+  cursor: pointer;
+  }
 `;
 
 const Backdrop = ({isOpen, close}) => {
 
-    const closeBackdrop = () => {
-        close(false)
-    }
+
     return (
-        <BackdropWrapper isOpen={isOpen} onClick={()=> closeBackdrop()}>
+        <BackdropWrapper isOpen={isOpen} onClick={()=> close(false)}>
 
         </BackdropWrapper>
     )

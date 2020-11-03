@@ -6,6 +6,7 @@ import ContentLeft from '../components/signInUp/contentLeft';
 import ContentRightSignIn from '../components/signInUp/contentRightSignIn';
 import {post} from '../axios';
 import LoaderModal from "../components/UIComponents/loaderModal";
+import ErrorMessage from "../components/UIComponents/errorMessage";
 
 const SignInWrapper = styled.div`
   height: 100vh;
@@ -31,6 +32,7 @@ const ContentRightWrapper = styled.div`
   background: ${variables.light};
 `;
 
+
 const SignIn = ({history}) => {
 
     const [authData, setAuthData] = useState({
@@ -40,38 +42,82 @@ const SignIn = ({history}) => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [userId, setUserId] = useState(null);
+    const [isError, setIsError] = useState(false);
 
     const onSignIn = async (email, password) => {
-        setIsLoading(true);
-        const {data: {token, userId}, status} = await post('/auth/login', {
-            email: email,
-            password: password
-        })
-        console.log(token, userId);
-        console.log('status', status);
-        if (status !== 200 && status !== 201) {
-            // Error
-            console.log('Error, error status: ', status);
-        } else {
-            const tokenExpDate = new Date(new Date().getTime() + 3600);
-            setAuthData({
-                token: token,
-                tokenExpirationDate: tokenExpDate
-            });
 
-            setUserId(userId);
+        try{
+            setIsLoading(true);
+            const {data: {token, userId}, status} = await post('/auth/login', {
+                email: email,
+                password: password
+            })
+            console.log(token, userId);
+            console.log('status', status);
+                const tokenExpDate = new Date(new Date().getTime() + 3600);
+                setAuthData({
+                    token: token,
+                    tokenExpirationDate: tokenExpDate
+                });
+
+                setUserId(userId);
 
 
-            // setting auth data in local sotrage
-            localStorage.setItem('token', token);
-            localStorage.setItem('tokenExpirationDate', tokenExpDate.toString());
-            localStorage.setItem('userId', userId);
+                // setting auth data in local sotrage
+                localStorage.setItem('token', token);
+                localStorage.setItem('tokenExpirationDate', tokenExpDate.toString());
+                localStorage.setItem('userId', userId);
 
-            // redirecting to dashboard when user singed in successfully
-            history.push('/dashboard');
+                // redirecting to dashboard when user singed in successfully
+                history.push('/dashboard');
+
+                console.log(isLoading)
+        } catch (e) {
+            console.error(e)
+                    setIsError(true);
+        } finally {
             setIsLoading(false);
         }
+        // if (status !== 200 && status !== 201) {
+        //     // Error
+        //     console.log('Error, error status: ', status);
+        //     if(status === 400 || status === 401) {
+        //         setIsLoading(false);
+        //         setIsError(true);
+        //         console.log(isLoading)
+        //     }
+        //
+        // } else {
+        //     const tokenExpDate = new Date(new Date().getTime() + 3600);
+        //     setAuthData({
+        //         token: token,
+        //         tokenExpirationDate: tokenExpDate
+        //     });
+        //
+        //     setUserId(userId);
+        //
+        //
+        //     // setting auth data in local sotrage
+        //     localStorage.setItem('token', token);
+        //     localStorage.setItem('tokenExpirationDate', tokenExpDate.toString());
+        //     localStorage.setItem('userId', userId);
+        //
+        //     // redirecting to dashboard when user singed in successfully
+        //     history.push('/dashboard');
+        //     setIsLoading(false);
+        //     console.log(isLoading)
+        // }
 
+    }
+
+    // const onCloseErrorMessage = () => {
+    //     setIsError(false);
+    // }
+
+    const errorMessage = {
+        header: "User not found",
+        content: "Please enter valid data, if haven't got account yet please ",
+        link: 'Sign Up'
     }
 
 
@@ -89,6 +135,7 @@ const SignIn = ({history}) => {
                 </Content>
             </SignInWrapper>
             <LoaderModal isOpen={isLoading}/>
+            <ErrorMessage isOpen={isError} close={setIsError} message={errorMessage}/>
         </>
     )
 };
