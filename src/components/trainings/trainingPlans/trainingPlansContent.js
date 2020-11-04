@@ -55,23 +55,9 @@ const PlansGrid = styled.div`
 
 
 
-const TrainingPlansContent = () => {
+const TrainingPlansContent = ({trainingPlans, createPlan}) => {
     const [isBackdropOpen, setBackDropOpen] = useState(false);
-    const [trainingPlans, setTrainingPlans] = useState([]);
-
-    const fetchTrainingPlans = async () => {
-        const token = localStorage.getItem('token')
-        const trainingPlans = await axios.get(`${baseUrl}/plans/all`, {
-            headers: {
-                Authorization: 'Bearer ' + token
-            }
-        });
-        console.log(trainingPlans);
-    }
-
-    useEffect( () => {
-         fetchTrainingPlans();
-    },[])
+    console.log('content', trainingPlans);
     return (
         <TrainingPlansWrapper>
             <SideNav/>
@@ -82,15 +68,17 @@ const TrainingPlansContent = () => {
                 </TrainingPlansHeader>
 
                 <PlansGrid>
-                    <TrainingPlan image='image1'/>
-                    <TrainingPlan image='image2'/>
-                    <TrainingPlan image='image3'/>
-                    <TrainingPlan image='image4'/>
-                    <TrainingPlan image='image5'/>
-                    <TrainingPlan image='image6'/>
+                    {trainingPlans.map(trainingPlan => (
+                        <TrainingPlan
+                            image={trainingPlan.image}
+                            title={trainingPlan.name}
+                            timestamp={trainingPlan.createdAt}
+                            user={trainingPlan.creator}
+                        />
+                    ))}
                 </PlansGrid>
             </Content>
-            <PlanForm isOpen={isBackdropOpen} setBackDropOpen={setBackDropOpen} mode='add'/>
+            <PlanForm  createPlan={createPlan} isOpen={isBackdropOpen} setBackDropOpen={setBackDropOpen} mode='add'/>
             <Backdrop isOpen={isBackdropOpen} close={setBackDropOpen}/>
         </TrainingPlansWrapper>
     )

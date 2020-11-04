@@ -57,7 +57,7 @@ const SignIn = ({history}) => {
 
             console.log(token, userId);
             console.log('status', status);
-                const tokenExpDate = new Date(new Date().getTime() + 3600);
+                const tokenExpDate = new Date(new Date().getTime() + (60 * 60 * 1000 ));
                 setAuthData({
                     token: token,
                     tokenExpirationDate: tokenExpDate

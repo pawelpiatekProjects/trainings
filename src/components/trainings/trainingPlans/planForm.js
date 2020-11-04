@@ -220,7 +220,7 @@ const SignInSchema = Yup.object().shape({
 
 // Adding and Editing plan
 
-const PlanForm = ({isOpen, mode}) => {
+const PlanForm = ({isOpen, mode, createPlan}) => {
 
     const [imageSelectOpen, setImageSelectOpen] = useState(false);
     const [image, setImage] = useState('Dumbbell');
@@ -234,10 +234,7 @@ const PlanForm = ({isOpen, mode}) => {
         console.log(image);
     }
 
-    const createPlan = async(data) => {
-        const newPlan = {...data, userId: localStorage.getItem('userId')};
-       return await axios.post(`${baseUrl}/plans/new`, newPlan);
-    }
+
     return(
             <FormWrapper isOpen={isOpen}>
                 <FormHeader>

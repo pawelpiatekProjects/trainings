@@ -163,16 +163,18 @@ const HoverTileButton = styled.button`
 `;
 
 
-const TrainingPlan = ({image}) => {
+const TrainingPlan = ({image, title, timestamp, user}) => {
 
     let backgroundImage;
+    const slicedTimestamp = timestamp.slice(0,10);
+    console.log(slicedTimestamp)
 
     switch (image) {
         case 'image1': {
             backgroundImage = chart;
             break;
         }
-        case 'image2': {
+        case 'Dumbbell': {
             backgroundImage = dumbbell;
             break;
         }
@@ -199,14 +201,14 @@ const TrainingPlan = ({image}) => {
         <PlanWrapper>
             <PlanImage image={backgroundImage}/>
             <PlanContent>
-                <PlanContentHeader>FBW1</PlanContentHeader>
-                <PlanContentText>Created 25-02-2020</PlanContentText>
+                <PlanContentHeader>{title}</PlanContentHeader>
+                <PlanContentText>Created: {slicedTimestamp}</PlanContentText>
             </PlanContent>
             <HoverTile id='hover-tile'>
                 <HoverTileContent id="hover-tile-content">
-                    <HoverTileHeader>FBW1</HoverTileHeader>
-                    <HoverTileText>Created: <span>25-02-2020</span></HoverTileText>
-                    <HoverTileText>Created by: <span>User</span></HoverTileText>
+                    <HoverTileHeader>{title}</HoverTileHeader>
+                    <HoverTileText>Created: <span>{slicedTimestamp}</span></HoverTileText>
+                    <HoverTileText>Created by: <span>{user}</span></HoverTileText>
 
                 </HoverTileContent>
                 <HoverTileButtons id="hover-tile-buttons">
