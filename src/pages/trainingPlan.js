@@ -11,6 +11,7 @@ const TrainingPlan = () => {
     // console.log('Id: ', id);
 
     const [trainingPlan, setTrainingPlan] = useState(null);
+    const [trainingDays, setTrainingDays] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
 
@@ -27,7 +28,20 @@ const TrainingPlan = () => {
         setIsLoading(false);
     }
 
+    const fetchTrainingDays = async() => {
+        const token = localStorage.getItem('token');
+        const {data: {trainingDays}} = await axios.get(`${baseUrl}/plans/training-days/${id}`, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        });
+
+        console.log(trainingDays);
+        setTrainingDays(trainingDays);
+    }
+
     const addTrainingDay = (trainingDayName) => {
+        // todo check if number of training days is lower than this added by user during creating plan
         const userId = localStorage.getItem('userId');
         const token = localStorage.getItem('token');
         const data = {
@@ -40,10 +54,12 @@ const TrainingPlan = () => {
                 Authorization: 'Bearer ' + token
             }
         })
+        fetchTrainingDays();
     }
 
     useEffect(() => {
         fetchTrainingPlan();
+        fetchTrainingDays();
     }, [])
 
     let renderedEl;
@@ -60,6 +76,7 @@ const TrainingPlan = () => {
                 description={trainingPlan.description}
                 timestamp={trainingPlan.timestamp}
                 createTrainingDay={addTrainingDay}
+                trainingDays={trainingDays}
             />
         }
     }

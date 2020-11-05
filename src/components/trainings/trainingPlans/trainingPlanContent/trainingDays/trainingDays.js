@@ -109,60 +109,68 @@ const BottomButtons = styled.div`
   }
 `;
 
-const TrainingDays = () => {
+const TrainingDays = ({trainingDays}) => {
     return (
         <TrainingDaysWrapper>
             <TrainingDaysHeading>
                 <TrainingDaysHeader>Day A</TrainingDaysHeader>
             </TrainingDaysHeading>
-            <TrainingDaysContent>
-                {/*Section displaying when there are no exercises in training day*/}
-                <NoExercises>
-                    <NoExercisesHeader>No Exercises In This Training Day</NoExercisesHeader>
-                    <Button>Add Exercises</Button>
-                </NoExercises>
-                {/*Exercises list*/}
-                <Exercises>
-                    {/*Single Exercise*/}
-                    <Exercise>
-                        <ExerciseItem>
-                            <ExerciseItemText>1.</ExerciseItemText>
-                        </ExerciseItem>
-                        <ExerciseItem>
-                            <ExerciseItemText>Squat</ExerciseItemText>
-                        </ExerciseItem>
-                        <ExerciseItem>
-                            <ExerciseItemText>5s5</ExerciseItemText>
-                        </ExerciseItem>
-                        <ExerciseItem>
-                            <ExerciseItemText>2010</ExerciseItemText>
-                        </ExerciseItem>
-                        <ExerciseItem>
-                            <ExerciseItemText>180-1202</ExerciseItemText>
-                        </ExerciseItem>
-                        <ExerciseItem>
-                            <ExerciseItemIcon color={variables.errorRed}>
-                                <FontAwesomeIcon icon={faInfo}/>
-                            </ExerciseItemIcon>
-                        </ExerciseItem>
-                        <ExerciseItem>
-                            {/*todo: Add yt icon*/}
-                            <ExerciseItemIcon color={variables.yellowPrimary}>
-                                <FontAwesomeIcon icon={faInfo}/>
-                            </ExerciseItemIcon>
-                        </ExerciseItem>
-                        <ExerciseItem>
-                            <ExerciseItemIcon color={variables.errorRed}>
-                                <FontAwesomeIcon icon={faTimes}/>
-                            </ExerciseItemIcon>
-                        </ExerciseItem>
-                    </Exercise>
-                </Exercises>
-                <BottomButtons>
-                    <Button>Add Exercise</Button>
-                    <Button>Remove Day</Button>
-                </BottomButtons>
-            </TrainingDaysContent>
+            {trainingDays.map(trainingDay => (
+                <TrainingDaysContent>
+                    {/*Section displaying when there are no exercises in training day*/}
+                    {trainingDay.trainings.length <= 0 ? (
+                        <NoExercises>
+                            <NoExercisesHeader>No Exercises In This Training Day</NoExercisesHeader>
+                            <Button>Add Exercises</Button>
+                        </NoExercises>
+                    ) : (
+                        <Exercises>
+                            {/*Single Exercise*/}
+                            <Exercise>
+                                <ExerciseItem>
+                                    <ExerciseItemText>1.</ExerciseItemText>
+                                </ExerciseItem>
+                                <ExerciseItem>
+                                    <ExerciseItemText>Squat</ExerciseItemText>
+                                </ExerciseItem>
+                                <ExerciseItem>
+                                    <ExerciseItemText>5s5</ExerciseItemText>
+                                </ExerciseItem>
+                                <ExerciseItem>
+                                    <ExerciseItemText>2010</ExerciseItemText>
+                                </ExerciseItem>
+                                <ExerciseItem>
+                                    <ExerciseItemText>180-1202</ExerciseItemText>
+                                </ExerciseItem>
+                                <ExerciseItem>
+                                    <ExerciseItemIcon color={variables.errorRed}>
+                                        <FontAwesomeIcon icon={faInfo}/>
+                                    </ExerciseItemIcon>
+                                </ExerciseItem>
+                                <ExerciseItem>
+                                    {/*todo: Add yt icon*/}
+                                    <ExerciseItemIcon color={variables.yellowPrimary}>
+                                        <FontAwesomeIcon icon={faInfo}/>
+                                    </ExerciseItemIcon>
+                                </ExerciseItem>
+                                <ExerciseItem>
+                                    <ExerciseItemIcon color={variables.errorRed}>
+                                        <FontAwesomeIcon icon={faTimes}/>
+                                    </ExerciseItemIcon>
+                                </ExerciseItem>
+                            </Exercise>
+                        </Exercises>
+                    )}
+
+                    {/*Exercises list*/}
+
+                    <BottomButtons>
+                        <Button>Add Exercise</Button>
+                        <Button>Remove Day</Button>
+                    </BottomButtons>
+                </TrainingDaysContent>
+            ))}
+
         </TrainingDaysWrapper>
     )
 };
