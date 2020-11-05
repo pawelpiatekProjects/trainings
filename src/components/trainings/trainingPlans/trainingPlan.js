@@ -208,7 +208,7 @@ const TrainingPlan = ({image, title, timestamp, user}) => {
                 <HoverTileContent id="hover-tile-content">
                     <HoverTileHeader>{title}</HoverTileHeader>
                     <HoverTileText>Created: <span>{slicedTimestamp}</span></HoverTileText>
-                    <HoverTileText>Created by: <span>{user}</span></HoverTileText>
+                    <HoverTileText>Created by: <span>{user.name}</span></HoverTileText>
 
                 </HoverTileContent>
                 <HoverTileButtons id="hover-tile-buttons">

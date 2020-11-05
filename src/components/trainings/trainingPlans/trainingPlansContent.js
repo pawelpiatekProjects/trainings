@@ -55,7 +55,7 @@ const PlansGrid = styled.div`
 
 
 
-const TrainingPlansContent = ({trainingPlans, createPlan}) => {
+const TrainingPlansContent = ({trainingPlans, createPlan, user}) => {
     const [isBackdropOpen, setBackDropOpen] = useState(false);
     console.log('content', trainingPlans);
     return (
@@ -73,12 +73,12 @@ const TrainingPlansContent = ({trainingPlans, createPlan}) => {
                             image={trainingPlan.image}
                             title={trainingPlan.name}
                             timestamp={trainingPlan.createdAt}
-                            user={trainingPlan.creator}
+                            user={user}
                         />
                     ))}
                 </PlansGrid>
             </Content>
-            <PlanForm  createPlan={createPlan} isOpen={isBackdropOpen} setBackDropOpen={setBackDropOpen} mode='add'/>
+            <PlanForm  createPlan={createPlan} isOpen={isBackdropOpen} close={setBackDropOpen} mode='add'/>
             <Backdrop isOpen={isBackdropOpen} close={setBackDropOpen}/>
         </TrainingPlansWrapper>
     )

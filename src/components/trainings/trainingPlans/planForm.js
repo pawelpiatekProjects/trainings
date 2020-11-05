@@ -220,7 +220,7 @@ const SignInSchema = Yup.object().shape({
 
 // Adding and Editing plan
 
-const PlanForm = ({isOpen, mode, createPlan}) => {
+const PlanForm = ({isOpen, mode, createPlan, close}) => {
 
     const [imageSelectOpen, setImageSelectOpen] = useState(false);
     const [image, setImage] = useState('Dumbbell');
@@ -258,6 +258,7 @@ const PlanForm = ({isOpen, mode, createPlan}) => {
                         createPlan(data).then(result => {
                             console.log(result);
                             //todo close modal
+                            close();
                         })
 
                     }}>

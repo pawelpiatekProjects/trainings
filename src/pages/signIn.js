@@ -5,7 +5,7 @@ import * as variables from "../assets/variables";
 import ContentLeft from '../components/signInUp/contentLeft';
 import ContentRightSignIn from '../components/signInUp/contentRightSignIn';
 import axios from 'axios';
-import { baseUrl } from '../api';
+import {baseUrl} from '../api';
 import LoaderModal from "../components/UIComponents/loaderModal";
 import ErrorMessage from "../components/UIComponents/errorMessage";
 
@@ -48,7 +48,7 @@ const SignIn = ({history}) => {
     const onSignIn = async (email, password) => {
         setIsLoading(true);
 
-        try{
+        try {
             const {data: {token, userId}, status} = await axios.post(`${baseUrl}/auth/login`, {
                 email: email,
                 password: password
@@ -57,68 +57,37 @@ const SignIn = ({history}) => {
 
             console.log(token, userId);
             console.log('status', status);
-                const tokenExpDate = new Date(new Date().getTime() + (60 * 60 * 1000 ));
-                setAuthData({
-                    token: token,
-                    tokenExpirationDate: tokenExpDate
-                });
+            const tokenExpDate = new Date(new Date().getTime() + (60 * 60 * 1000));
+            setAuthData({
+                token: token,
+                tokenExpirationDate: tokenExpDate
+            });
 
-                setUserId(userId);
+            setUserId(userId);
 
 
-                // setting auth data in local sotrage
-                localStorage.setItem('token', token);
-                localStorage.setItem('tokenExpirationDate', tokenExpDate.toString());
-                localStorage.setItem('userId', userId);
+            // setting auth data in local storage
+            localStorage.setItem('token', token);
+            localStorage.setItem('tokenExpirationDate', tokenExpDate.toString());
+            localStorage.setItem('userId', userId);
 
-                // redirecting to dashboard when user singed in successfully
-                history.push('/dashboard');
 
-                console.log(isLoading)
+
+            // redirecting to dashboard when user singed in successfully
+            history.push('/dashboard');
+
+            console.log(isLoading)
         } catch (e) {
             setIsError(true);
             console.log(e)
 
 
-
         } finally {
             setIsLoading(false);
         }
-        // if (status !== 200 && status !== 201) {
-        //     // Error
-        //     console.log('Error, error status: ', status);
-        //     if(status === 400 || status === 401) {
-        //         setIsLoading(false);
-        //         setIsError(true);
-        //         console.log(isLoading)
-        //     }
-        //
-        // } else {
-        //     const tokenExpDate = new Date(new Date().getTime() + 3600);
-        //     setAuthData({
-        //         token: token,
-        //         tokenExpirationDate: tokenExpDate
-        //     });
-        //
-        //     setUserId(userId);
-        //
-        //
-        //     // setting auth data in local sotrage
-        //     localStorage.setItem('token', token);
-        //     localStorage.setItem('tokenExpirationDate', tokenExpDate.toString());
-        //     localStorage.setItem('userId', userId);
-        //
-        //     // redirecting to dashboard when user singed in successfully
-        //     history.push('/dashboard');
-        //     setIsLoading(false);
-        //     console.log(isLoading)
-        // }
 
     }
 
-    // const onCloseErrorMessage = () => {
-    //     setIsError(false);
-    // }
 
     const errorMessage = {
         header: "User not found",
