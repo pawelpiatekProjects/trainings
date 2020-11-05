@@ -19,12 +19,12 @@ const Wrapper = styled.div`
   z-index: ${variables.formZIndex};
 `;
 
-const FormWrapper = ({isOpen, formContent}) =>{
+const FormWrapper = ({isOpen, formContent, createMethod}) =>{
 
     let activeForm;
     switch (formContent) {
         case 'newDay': {
-            activeForm = <AddNewDay/>
+            activeForm = <AddNewDay create={createMethod}/>
             break;
         }
         case 'editPlan': {

@@ -112,22 +112,26 @@ const NoDaysHeader = styled.h1`
 
 
 
-const TrainingPlanContent = () => {
+const TrainingPlanContent = ({name, days, description, priority, timestamp, createTrainingDay}) => {
 
     const [isModalOpen, setModalOpen] = useState(false);
     const [formContent, setFormContent] = useState(null);
 
-    const addNewDay = () => {
+    const openAddNewDayModal = () => {
         setFormContent('newDay');
         setModalOpen(true);
     }
 
-    const editPlan = () => {
+    const onCreateNewTrainingDay = (trainingDayName) => {
+        createTrainingDay(trainingDayName);
+    }
+
+    const openEditPlanModal = () => {
         setFormContent('editPlan');
         setModalOpen(true);
     }
 
-    const deletePlan = () => {
+    const openDeletePlanModal = () => {
         setModalOpen(true);
     }
 
@@ -137,21 +141,21 @@ const TrainingPlanContent = () => {
             <Content>
                 <HeroImg></HeroImg>
                 <TrainingHeading>
-                    <TrainingHeader>FBW1</TrainingHeader>
+                    <TrainingHeader>{name}</TrainingHeader>
                     <HeadingButtons>
-                        <Button onClick={()=> addNewDay()}>Add Training Day</Button>
+                        <Button onClick={()=> openAddNewDayModal()}>Add Training Day</Button>
                         {/*todo: disable this button when there are no training days*/}
-                        <Button onClick={()=> editPlan()}>Edit</Button>
-                        <Button onClick={()=> deletePlan()}>Delete</Button>
+                        <Button onClick={()=> openEditPlanModal()}>Edit</Button>
+                        <Button onClick={()=> openDeletePlanModal()}>Delete</Button>
                     </HeadingButtons>
                 </TrainingHeading>
                 <InfoRow>
-                    <InfoRowItem>Created: <span>25-02-2020</span></InfoRowItem>
-                    <InfoRowItem>Frequency: <span>4 days</span></InfoRowItem>
-                    <InfoRowItem>Priority: <span>none</span></InfoRowItem>
+                    <InfoRowItem>Created: <span>{timestamp}</span></InfoRowItem>
+                    <InfoRowItem>Frequency: <span>{days}</span></InfoRowItem>
+                    <InfoRowItem>Priority: <span>{priority}</span></InfoRowItem>
                 </InfoRow>
                 <DescriptionRow>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quam nisi, porttitor vitae fringilla ac, feugiat ut purus. Nunc eu condimentum sapien, eget ornare nisi. Sed pulvinar rutrum eros, ultrices hendrerit dui sollicitudin
+                    {description}
                 </DescriptionRow>
                 <DaysRow>
                     {/*Section which is displaying when there are no training days*/}
@@ -159,14 +163,14 @@ const TrainingPlanContent = () => {
                         <NoDaysHeader>
                             Your training plan is empty. Add training days
                         </NoDaysHeader>
-                        <Button onClick={()=> addNewDay()}>Add</Button>
+                        <Button onClick={()=> openAddNewDayModal()}>Add</Button>
                     </NoDays>
                     {/*Training days list*/}
                     <TrainingDays/>
                 </DaysRow>
             </Content>
             <Backdrop isOpen={isModalOpen} close={setModalOpen}/>
-            <FormWrapper isOpen={isModalOpen} formContent={formContent}/>
+            <FormWrapper isOpen={isModalOpen} formContent={formContent} createMethod={onCreateNewTrainingDay}/>
         </TrainingPlanWrapper>
     )
 };

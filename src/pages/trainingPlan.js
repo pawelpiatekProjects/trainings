@@ -27,12 +27,45 @@ const TrainingPlan = () => {
         setIsLoading(false);
     }
 
+    const addTrainingDay = (trainingDayName) => {
+        const userId = localStorage.getItem('userId');
+        const token = localStorage.getItem('token');
+        const data = {
+            name: trainingDayName,
+            userId: userId,
+            planId: id
+        }
+        axios.post(`${baseUrl}/plans/training-days/new`, data, {
+            headers: {
+                Authorization: 'Bearer ' + token
+            }
+        })
+    }
+
     useEffect(() => {
         fetchTrainingPlan();
     }, [])
+
+    let renderedEl;
+    if (trainingPlan === null || trainingPlan === undefined) {
+        renderedEl = <LoaderModal isOpen={true}/>
+    } else {
+        if (isLoading) {
+            renderedEl = <LoaderModal isOpen={true}/>
+        } else {
+            renderedEl = <TrainingPlanContent
+                name={trainingPlan.name}
+                days={trainingPlan.days}
+                priority={trainingPlan.priority}
+                description={trainingPlan.description}
+                timestamp={trainingPlan.timestamp}
+                createTrainingDay={addTrainingDay}
+            />
+        }
+    }
     return (
         <>
-            {isLoading ? <LoaderModal isOpen={true}/> : <TrainingPlanContent/>}
+            {renderedEl}
         </>
     )
 

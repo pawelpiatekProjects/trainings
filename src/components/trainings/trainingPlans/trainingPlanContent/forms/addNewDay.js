@@ -98,7 +98,7 @@ const SignInSchema = Yup.object().shape({
         .required('Name is required'),
 });
 
-const AddNewDay = () => {
+const AddNewDay = ({create}) => {
 
 
     return(
@@ -111,6 +111,7 @@ const AddNewDay = () => {
                 validationSchema={SignInSchema}
                 onSubmit={(values) => {
                     console.log(values)
+                    create(values.name)
                 }}>
                 {({errors, touched, }) => (
                     <Form>
