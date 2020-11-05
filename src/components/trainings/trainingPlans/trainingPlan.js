@@ -1,5 +1,6 @@
 import React from "react";
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import * as variables from '../../../assets/variables';
 import dumbbell from "../../../assets/images/svg/dumbel.svg";
 import chart2 from '../../../assets/images/svg/grafika5.svg';
@@ -10,6 +11,7 @@ import heart from '../../../assets/images/svg/grafika8.1.svg';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrashAlt, faEdit, faArrowRight} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
+import LoaderModal from "../../UIComponents/loaderModal";
 
 
 const PlanWrapper = styled.div`
@@ -115,7 +117,6 @@ const HoverTileButtons = styled.div`
 `;
 
 
-
 const HoverTileButton = styled.button`
   width: 100%;
   border: none;
@@ -163,14 +164,14 @@ const HoverTileButton = styled.button`
 `;
 
 
-const TrainingPlan = ({image, title, timestamp, user}) => {
+const TrainingPlan = ({image, title, timestamp, user, id}) => {
 
     let backgroundImage;
-    const slicedTimestamp = timestamp.slice(0,10);
-    console.log(slicedTimestamp)
+    const slicedTimestamp = timestamp.slice(0, 10);
+    console.log(id)
 
     switch (image) {
-        case 'image1': {
+        case 'Blue Chart': {
             backgroundImage = chart;
             break;
         }
@@ -178,57 +179,79 @@ const TrainingPlan = ({image, title, timestamp, user}) => {
             backgroundImage = dumbbell;
             break;
         }
-        case 'image3': {
+        case 'Green Chart': {
             backgroundImage = chart2;
             break;
         }
-        case 'image4': {
+        case 'Red Chart': {
             backgroundImage = chart3;
             break;
         }
-        case 'image5': {
+        case 'Kettlebell': {
             backgroundImage = kettlebell;
             break;
         }
-        case 'image6': {
+        case 'Heart': {
             backgroundImage = heart;
             break;
         }
     }
 
+    console.log('User', user);
 
+    let renderedComponent;
+    if (user === null || user === undefined) {
+        renderedComponent = <LoaderModal isOpen={true}/>
+    } else {
+        renderedComponent = (
+            <PlanWrapper>
+                <PlanImage image={backgroundImage}/>
+                <PlanContent>
+                    <PlanContentHeader>{title}</PlanContentHeader>
+                    <PlanContentText>Created: {slicedTimestamp}</PlanContentText>
+                </PlanContent>
+                <HoverTile id='hover-tile'>
+                    <HoverTileContent id="hover-tile-content">
+                        <HoverTileHeader>{title}</HoverTileHeader>
+                        <HoverTileText>Created: <span>{slicedTimestamp}</span></HoverTileText>
+                        <HoverTileText>Created by: <span>{user.name}</span>
+                        </HoverTileText>
+
+                    </HoverTileContent>
+                    <HoverTileButtons id="hover-tile-buttons">
+                        <HoverTileButton hoverColor={variables.yellowPrimary}>
+                            <Link to={`/trainings/plans/${id}`}>Open</Link>
+                            <FontAwesomeIcon icon={faArrowRight}/>
+                        </HoverTileButton>
+                        <HoverTileButton hoverColor={variables.primaryBlue}>
+                            <Link to='/trainings/plans/1/edit'>Edit</Link>
+                            <FontAwesomeIcon icon={faEdit}/>
+                        </HoverTileButton>
+                        <HoverTileButton hoverColor={variables.errorRed}>
+                            <p>Delete</p>
+                            <FontAwesomeIcon icon={faTrashAlt}/>
+                        </HoverTileButton>
+                    </HoverTileButtons>
+
+                </HoverTile>
+            </PlanWrapper>
+        )
+    }
     return (
-        <PlanWrapper>
-            <PlanImage image={backgroundImage}/>
-            <PlanContent>
-                <PlanContentHeader>{title}</PlanContentHeader>
-                <PlanContentText>Created: {slicedTimestamp}</PlanContentText>
-            </PlanContent>
-            <HoverTile id='hover-tile'>
-                <HoverTileContent id="hover-tile-content">
-                    <HoverTileHeader>{title}</HoverTileHeader>
-                    <HoverTileText>Created: <span>{slicedTimestamp}</span></HoverTileText>
-                    <HoverTileText>Created by: <span>{user.name}</span></HoverTileText>
-
-                </HoverTileContent>
-                <HoverTileButtons id="hover-tile-buttons">
-                    <HoverTileButton hoverColor={variables.yellowPrimary}>
-                        <Link to='/trainings/plans/1'>Open</Link>
-                        <FontAwesomeIcon icon={faArrowRight}/>
-                    </HoverTileButton>
-                    <HoverTileButton hoverColor={variables.primaryBlue}>
-                        <Link to='/trainings/plans/1/edit'>Edit</Link>
-                        <FontAwesomeIcon icon={faEdit}/>
-                    </HoverTileButton>
-                    <HoverTileButton hoverColor={variables.errorRed}>
-                        <p>Delete</p>
-                        <FontAwesomeIcon icon={faTrashAlt}/>
-                    </HoverTileButton>
-                </HoverTileButtons>
-
-            </HoverTile>
-        </PlanWrapper>
+        <>
+            {renderedComponent}
+        </>
     )
 };
+
+TrainingPlan.propTypes = {
+    image: PropTypes.string,
+    title: PropTypes.string,
+    timestamp: PropTypes.string,
+    user: PropTypes.shape({
+        name: PropTypes.string,
+        email: PropTypes.string
+    })
+}
 
 export default TrainingPlan;

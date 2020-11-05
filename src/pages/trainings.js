@@ -16,7 +16,7 @@ const Trainings = () => {
     const fetchTrainingPlans = async () => {
         // todo Add error handling
         setIsLoading(true);
-        const token = localStorage.getItem('token')
+        const token = localStorage.getItem('token');
         const trainingPlans = await axios.get(`${baseUrl}/plans/all`, {
             headers: {
                 Authorization: 'Bearer ' + token
@@ -29,6 +29,8 @@ const Trainings = () => {
         setIsLoading(false);
     }
 
+
+
     const fetchUser = async() => {
         const token = localStorage.getItem('token');
 
@@ -37,8 +39,11 @@ const Trainings = () => {
                 Authorization: 'Bearer ' + token
             }
         });
-
-        setUser(user);
+        const userData = {
+            name: user.name,
+            email: user.email
+        }
+        setUser(userData);
     }
 
 

@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import styled from 'styled-components';
 import SideNav from "../../navigation/sideNav";
 import * as variables from '../../../assets/variables'
-import { baseUrl } from '../../../api';
-import axios from 'axios';
+import PropTypes from 'prop-types';
+
 import {Button} from "../../UIComponents/primaryButton";
 import TrainingPlan from "./trainingPlan";
 import PlanForm from "./planForm";
@@ -58,6 +58,7 @@ const PlansGrid = styled.div`
 const TrainingPlansContent = ({trainingPlans, createPlan, user}) => {
     const [isBackdropOpen, setBackDropOpen] = useState(false);
     console.log('content', trainingPlans);
+
     return (
         <TrainingPlansWrapper>
             <SideNav/>
@@ -74,6 +75,9 @@ const TrainingPlansContent = ({trainingPlans, createPlan, user}) => {
                             title={trainingPlan.name}
                             timestamp={trainingPlan.createdAt}
                             user={user}
+                            id={trainingPlan._id}
+                            key={trainingPlan._id}
+
                         />
                     ))}
                 </PlansGrid>
@@ -83,5 +87,15 @@ const TrainingPlansContent = ({trainingPlans, createPlan, user}) => {
         </TrainingPlansWrapper>
     )
 };
+
+TrainingPlansContent.propTypes = {
+    trainingPlans: PropTypes.array,
+    createPlan: PropTypes.func,
+    user: PropTypes.shape({
+        name: PropTypes.string,
+        email: PropTypes.string
+    }),
+    fetchTrainingPlan: PropTypes.func
+}
 
 export default TrainingPlansContent;
