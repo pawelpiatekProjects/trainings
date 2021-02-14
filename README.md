@@ -8,22 +8,22 @@
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 
 <h1 align="center">
-  Schedule App
+  Trainings App
 </h1>
 
 
-***"Schedule App"*** is a Web Application based on Angular. This App is used to manage your schedule during the day
+***"Trainings App"*** is a Web Application based on React.js. This App is used to help with trainings on a gym.
 
 
 
 ***
 ### Demo 
 <p align="center">
-  <img  src="https://github.com/pawelpiatekProjects/scheduleApp/blob/master/example2.gif" width=60%/>
+  <img  src="https://github.com/pawelpiatekProjects/trainings/blob/master/example1.gif" width=60%/>
  </p>
 
 ***
 ### Technologies
-1. 💻 Angular / TypeScript
-1. 🎨 SCSS
-1. 🔧 Express.js - Backend in anorher repository [Backend](https://github.com/pawelpiatekProjects/scheduleAppBackend)
+1. 💻 React.js / JavaScript / Hooks
+1. 🎨 Styled Components
+1. 🔧 Express.js - Backend in anorher repository [Backend](https://github.com/pawelpiatekProjects/trainingsBackend)
